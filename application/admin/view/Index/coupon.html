@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title> - 优惠券</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="__STATIC__/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link rel="stylesheet" href="__STATIC__/bPage/b.page.bootstrap3.css" type="text/css">
+    <link href="__STATIC__/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__STATIC__/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="__STATIC__/css/animate.css" rel="stylesheet">
+    <link href="__STATIC__/css/style.css?v=4.1.0" rel="stylesheet">
+    <style type="text/css">
+    	body{
+    		font-size: 15px;
+    	}
+        th > img {
+            width: 50px;
+            height: 50px;
+        }
+        th{
+          text-align: center;
+        }
+        .list-group-item >span{
+          margin-right: 10px;
+        }
+        .table{
+          margin-bottom: 0;
+        }
+        .addman{
+          margin-left: 20px;
+        }
+        .areainput{
+          width: 180px;
+          position: absolute;
+          top:30px;
+          border:1px solid #E5E6E7;
+          text-align: center;
+          background-color: white;
+          display: none;
+        }
+        .dele-man{
+          cursor: pointer;
+        }
+        .change{
+          cursor: pointer;
+        }
+    </style>
+
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>优惠券</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row" style="padding: 0 12px;">
+                            <a class="btn btn-info" href="{:url('admin/index/newadd')}"> 新增优惠券</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>名称</th>
+                                        <th>有效期</th>
+                                        <th>优惠内容</th>
+                                        <th>数量（数量）</th>
+                                        <th>链接</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                {foreach data as $list}
+                                <tbody>
+                                    <tr>
+                                        <th>{$list.name}</th>
+                                        {switch name="list.timetype"}
+                                            {case value="1"}<th>领取后{$list.open}天生效，有效期{$list.close}天</th>{/case}
+                                            {case value="2"}<th>起{$list.open}，止{$list.close}</th>{/case}
+                                            {default /}<th></th>
+                                        {/switch}
+                                        <th>{$list.content}</th>
+                                        <th>{$list.number}</th>
+                                        <th><textarea id="link{$list.id}">{$list.link}</textarea></th>
+                                        <th  onClick="copyUrl2({$list.id})"><a>链接</a></th>
+                                    </tr>
+                                </tbody>
+                                {/foreach}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="page1">
+	        <div class="pagination bPage bPageRight">
+	         <ul>
+	            <li id="bPageList" class="disabled bPageList"><a>每页 <select id="bPageDropList"><option value="5">5</option><option value="10">10</option><option value="15">15</option><option value="20">20</option></select> 条</a></li>
+	            <li id="bPageInfo" class="disabled bPageInfo"><a>当前显示第{$page}/{$maxPage}页（共{$size}条记录）</a></li>
+
+	            <li id="bPageFirstPage" class="bPageControlButton disabled"><a href="{$href}?page=1&each={$each}">首页</a></li>
+
+	            <li id="bPagePreviousPage" class="bPageControlButton disabled"><a href="{$href}?page={$page-1}&each={$each}">«</a></li>
+
+	            {foreach $pages as $p}
+	            <li><a href="{$href}?page={$p}&each={$each}">{$p}</a></li>
+	            {/foreach}
+	             
+	            <li id="bPageNextPage" class="bPageControlButton"><a href="{$href}?page={$page+1}&each={$each}">»</a></li>
+	            <li id="bPageLastPage" class="bPageControlButton"><a href="{$href}?page={$maxPage}&each={$each}">尾页</a></li>
+	         </ul>
+	        </div>
+        </div>
+    </div>
+
+    <!-- 全局js -->
+    <script src="__STATIC__/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__STATIC__/js/bootstrap.min.js?v=3.3.6"></script>
+    <!-- Peity -->
+    <script src="__STATIC__/js/plugins/peity/jquery.peity.min.js"></script>
+    <!-- 自定义js -->
+    <script  src="__STATIC__/bPage/b.page.js"></script>
+    <script src="__STATIC__/js/content.js?v=1.0.0"></script>
+    <!-- iCheck -->
+    <!-- Peity -->
+    <!-- <script src="__STATIC__/js/demo/peity-demo.js"></script> -->
+	<script type="text/javascript">
+	function copyUrl2(id)
+	{
+		var Url2=document.getElementById("link"+id);
+		Url2.select(); // 选择对象
+		document.execCommand("Copy"); // 执行浏览器复制命令
+		alert("已复制好，可贴粘。");
+	}
+    $(function(){
+        $("#bPageDropList").val("{$each}")
+        $('.cardno-buttom').click(function(){
+           var cardno = $(this).attr('cardno');
+           $('.cardno-set').val(cardno)
+        })
+        $('#bPageDropList').change(function(){
+            var each = $('#bPageDropList option:selected').text();
+            var url = "{$href}?"
+            var page ="{$page}"
+            window.location.href=url+"page="+page+"&each="+each
+        })
+    })
+	</script>
+</body>
+
+</html>

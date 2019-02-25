@@ -1,0 +1,1 @@
+<?php exit();?>{"jsapi_ticket":"HoagFKDcsGMVCIY2vOjf9l7DwSP2vV248pPJOo5Vzsov8AR_j2Qvk3Fn4H3hQBuOarwt-KltnpqfBpMMYq9FRw","expire_time":1514026714}

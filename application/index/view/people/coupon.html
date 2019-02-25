@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>优惠券</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+	<meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="__STATIC__/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__STATIC__/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <style type="text/css">
+    body,html{
+    	padding:0px;
+    	margin:0px;
+    	width: 100%;
+    	background-color: rgb(242,242,242);
+    }
+    .box{
+    	background-color: rgb(175,43,46);
+    	margin: 0 4%;
+    	margin-top: 3%;
+		position: relative;
+    }
+    .left{
+		float: left;
+		width: 25%;
+    }
+    .left img{
+    	width: 70px;
+    	height: 70px;
+	    border-radius: 45px;
+	    padding: 12% 12%;
+	    	
+
+    }
+    .right{
+		float: left;
+	    width: 67%;
+	    padding-left: 8%;
+	    padding-top: 3%;
+	    color: #f3e9e9;
+
+    }
+    .right span{
+    	display: block;
+    	padding: 1% 0;
+
+    }
+    .bbox{
+    	background-color: white;
+    	margin: 0 4%;
+    	padding-bottom: 3%;
+    }
+    .bbox span{
+		font-size: 13px;
+		padding-left: 2%;
+    }
+    .foot{
+	    width: 100%;
+	    background-color: rgb(175,43,46);
+	    position: fixed;
+	    bottom: 0px;
+	    color: white;
+	    text-align: center;
+	    padding: 10px 0;
+	}
+	#button1{
+		background-color: rgb(153,153,153);
+	}
+	.mask {       
+		display: none;
+        position: absolute; top: 0px;
+        filter: alpha(opacity=60);
+        background-color: #777;     
+        z-index: 1002; 
+        left: 0px;     
+        opacity:0.5;
+        -moz-opacity:0.5;    
+        text-align: center;
+	    padding: 60% 0px;
+    }     
+    .dong{
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    width: 10%;
+	    background-color: white
+    }
+    </style>
+</head>
+<body>
+	{empty name="data"}
+	<div style="width: 100%;">
+          <img src="__STATIC__/img/12.png" style="margin:0 auto;display: block;">
+      </div>
+      <div style="width: 100%;text-align: center;">
+        <span>您还没有优惠券哦，赶快去领取吧。</span>
+      </div>
+	{/empty}
+	{foreach data as $cou}
+	<div class="box" {if condition="$cou.status>=2"}style="background-color: rgb(202, 129, 131);"{/if} status="{$cou.status}">
+		<div class="left">
+			<img src="__STATIC__/img/06.png">
+		</div>
+		<div class="right">
+			<span>{$cou.name}</span>
+			<span style="font-size: 12px;">{$cou.content}</span>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<div class="bbox">
+		{if condition="$cou.timetype==2"}
+		<span>有效日期：{$cou.open}至{$cou.close}</span>
+		{else}
+		<span>有效日期：领取后{$cou.open}天生效，有效期{$cou.close}天</span>
+		{/if}
+	</div>
+	{/foreach}
+</body>
+<script type="text/javascript" src="__STATIC__/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">     
+ 	$(function(){
+ 		$('.box').click(function(){
+ 			if ($(this).attr('status')==1) {
+ 				alert('优惠券正在使用中，请尽快完成订单吧。')
+ 			}else if ($(this).attr('status')==2) {
+ 				alert('优惠券已经超过了有效使用期。')
+ 			}else if ($(this).attr('status')==3) {
+ 				alert('优惠券已使用。')
+ 			}
+ 		})
+ 	})
+</script>
+</html>

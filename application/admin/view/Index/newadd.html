@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>新增优惠券</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+	<meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico"> 
+  	<link rel="stylesheet" href="__STATIC__/css/chosen.css">
+    <link href="__STATIC__/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/css/xwc.css">
+	<link href="__STATIC__/css/jquery.bxslider.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="__STATIC__/fonts/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link href="__STATIC__/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+	<style type="text/css">
+	.coupon-1{
+		width: 84%;
+		height: 200px;
+		margin:0 auto;
+		background-color: rgb(228,228,228);
+	}
+	.clear{
+		clear: both;
+	}
+	.labelbox label{
+		font-size: 18px;
+	    margin-top: 15px;
+	    margin-right: 50px;
+	}
+	.timetype-1{
+		display: none;
+		margin-left: 17%;
+	}
+	.select1{
+		width: 10%;
+		float: left;
+		margin-left: 4%;
+		margin-top: 31px;
+		height: 30px;
+		margin-right: 20px;
+	}
+	.chosen-select{
+		display: none;
+	}
+	.chzn-container{
+		display: none;
+	}
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button{
+	    -webkit-appearance: none !important;
+	    margin: 0; 
+	}
+	input[type="number"]{-moz-appearance:textfield;}
+	input[name="zhe"]{width: 170px;}
+	input[name="jian"]{width: 170px}
+	</style>
+</head>
+<body>
+	<form method="post" action="{:url('admin/index/newadd')}">
+	<div style="margin-top:40px;width: 100%;">
+		<span style="font-size: 13px; margin-left: 8%;font-size: 15px;">优惠券名称</span>
+		<input type="text" placeholder="&nbsp;优惠券名称" name="name" style="width: 20%;margin-left:2%;" required>
+	</div>
+
+	<div>
+		<p style="float: left;margin-left: 8%;margin-top: 30px;font-size: 15px;">数量</p>
+        <input type="number" name="number1" step="1" style="margin-left: 4.5%;float: left;margin-top: 31px;height: 25px;width: 5%;" required placeholder="优惠券数量">
+		<div style="clear: both;"></div>
+	</div>
+
+	<div class="coupon">
+		<p style="float: left;font-size: 15px;">优惠内容</p>
+		<!-- <div class="radio" style="float: left;margin-left: 4%;margin-top: 1px;">
+            <label>
+                <input type="radio" name="positions" checked="">减价
+            </label>
+        </div>
+
+        <div class="radio" style="float: left;margin-left: 3%;margin-top: 1px;">
+            <label>
+                <input type="radio" name="positions" checked="">打折
+            </label>
+        </div> -->
+        <div class="radio" style="float: left;margin-left: 3%;margin-top: 1px;">
+            <label><input type="radio" name="type" value="2" checked>满价</label>
+            <label style="margin-left: 20px;"><input type="radio" name="type" value="3">满件</label>
+        </div>
+       <div style="clear: both;"></div>
+	</div>
+
+	<div class="coupon-1">
+		<div style="float: left;">
+		<p style="float: left;margin-top: 70px;font-size: 15px;border: 1px solid;padding: 4px 10px;background-color: #e8e8e8;border-bottom-left-radius: 5px;border-top-left-radius: 5px;margin-left: 20px;">满</p>
+		<input type="number" name="conditon" min="0" step="0.01" style="float: left;margin-top: 70px;height: 31px;width: 50px;" required>
+		<p style="float: left;margin-left: 0%;margin-top:70px;font-size: 15px;border: 1px solid;padding: 4px 10px;background-color: #e8e8e8;border-bottom-right-radius: 5px;border-top-right-radius: 5px;" class="list">元</p>
+		<div class="clear"></div>
+		</div>
+		<div style="float: left;width: 277px;margin-left: 50px;" class="labelbox">
+            <label><input type="radio" name="moneytype" value="1" checked>减现</label><input type="number" name="listmoney" min="0" class="moneytype" required="true" step="0.01">
+            <label><input type="radio" name="moneytype" value="2">打折</label><input type="number" name="zhe" min="0" max="9.9" class="moneytype" step="0.1">
+            <label><input type="radio" name="moneytype" value="3">减件</label><input type="number" name="jian" min="1" max="5" class="moneytype">
+            <label><input type="radio" name="moneytype" value="4">免配送费</label>
+        </div>
+		<div class="clear"></div>
+	</div>
+
+
+	<div>
+		<p style="float: left;margin-left: 8%;margin-top: 15px;font-size: 15px;">有效期</p>
+		<div class="radio" style="float: left;margin-left: 5%;margin-top: 15px;">
+            <label><input type="radio" name="timetype" value="1" checked>指定时间</label>
+            <label style="margin-left: 20px;"><input type="radio" name="timetype" value="2">固定范围</label>
+        </div>
+        <div style="clear: both;"></div>
+	</div>
+
+
+	<div>
+		<div class="timetype-0">
+		<p style="float: left;margin-left: 17%;margin-top: 10px;font-size: 15px;border: 1px solid;padding: 4px 1%;background-color: #e8e8e8;border-bottom-left-radius: 5px;border-top-left-radius: 5px;">领取后</p>
+		<input type="number" name="openday" step="1" style="float: left;margin-top: 10px;height: 31px;width: 5%;" required="true">
+		<p style="float: left;margin-left: 0%;margin-top: 10px;font-size: 15px;border: 1px solid;padding: 4px 1%;background-color: #e8e8e8;border-bottom-right-radius: 5px;border-top-right-radius: 5px;">天</p>
+
+		<p style="float: left;margin-left: 0%;margin-top: 10px;font-size: 15px;border: 1px solid;padding: 4px 1%;background-color: #e8e8e8;border-bottom-left-radius: 5px;border-top-left-radius: 5px;">生效</p>
+		<input type="number" name="closeday" step="1" style="float: left;margin-top: 10px;height: 31px;width: 5%;" required="true">
+		<p style="float: left;margin-left: 0%;margin-top: 10px;font-size: 15px;border: 1px solid;padding: 4px 1%;background-color: #e8e8e8;border-bottom-right-radius: 5px;border-top-right-radius: 5px;">天</p>
+		<div style="clear: both;"></div>
+		</div>
+
+		<div class="timetype-1">
+		<label>开始时间</label><input type="date" class="form-control" min="{$date}" style="width: 263px;display: inline-block;margin: 0 10px;" name='open'>
+        <labe>结束时间</label><input type="date" class="form-control" style="width: 263px;display: inline-block;margin: 0 10px;" name='close'>
+        </di"v>
+	</div>
+
+
+	<div>
+		<p style="float: left;margin-left: 8%;margin-top: 30px;font-size: 15px;">活动范围</p>
+		<select class="select1" required name="tiptype">
+			<option value="0">全部商品</option>
+			<option value="1">部分商品</option>
+		</select>
+      	<select data-placeholder="选择标签" multiple class="chosen-select" style="width:350px;" tabindex="18" id="multiple-label-example" name="goodstip[]">
+      		{foreach tip as $list}
+	        <option value="{$list.id}">{$list.name}</option>
+	        {/foreach}
+      	</select>
+		<div style="clear: both;"></div>
+	</div>
+
+	<div>
+		<p style="float: left;margin-left: 8%;margin-top: 30px;font-size: 15px;">领取限制</p>
+        <input type="number" name="limit" step="1" value="0" style="margin-left: 4%;float: left;margin-top: 31px;height: 25px;width: 5%;">
+		<p style="float: left;margin-left: 0%;margin-top: 31px;font-size: 13px;border: 1px solid;padding: 2px 1%;background-color: #e8e8e8;border-bottom-right-radius: 5px;border-top-right-radius: 5px;">张</p><p style="float: left;margin-left: 20px;margin-top: 31px;font-size: 15px;">(0张就是不限制)</p>
+		<div style="clear: both;"></div>
+	</div>
+
+	<div>
+		<p style="float: left;margin-left: 8%;margin-top: 30px;font-size: 15px;">说明</p>
+		<textarea name="extra" required style="float: left;margin-left: 6%;margin-top: 32px;height: 150px;width: 20%;"></textarea>
+		<input type="button" value="保存" style="float: left;margin-left: 1%;margin-top: 200px;text-decoration: none;color: snow;border: 1px solid;padding: 4px 2%;background-color: #62e662;margin-bottom: 50px;">
+		<input type="submit" style="display: none;">
+	</div>
+	</form>
+
+
+
+<script type="text/javascript" src="__STATIC__/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="__STATIC__/js/jquery.bxslider.js"></script>
+<script src="__STATIC__/js/chosen.jquery.js" type="text/javascript"></script>
+<script src="__STATIC__/js/prism.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+    $('input[type=button]').click(function(){
+	  var select=$(".select1").val()
+	  if (select==1) {
+	      var result = $('.chosen-select').select().val()
+	      if (result==null) {
+	      	alert('请选择商品标签')
+	      }else{
+	      	$('input[type=submit]').click()
+	      }
+	  }else{
+      	$('input[type=submit]').click()
+	  }
+    })
+    $('input[name=type]').click(function(){
+    	if (($(this).val())==2) {
+    		$('.list').html('元')
+    		$('input[name=money]').attr('step',0.01)
+    	}else{
+    		$('input[name=money]').attr('step',1)
+    		$('.list').html('件')
+    	}
+    })
+    $('input[name=timetype]').click(function(){
+    	if (($(this).val())==1) {
+    		$('input[name=openday]').attr('required',true)
+    		$('input[name=closeday]').attr('required',true)
+    		$('input[type=date]').attr('required',false)
+    		$('.timetype-1').hide()
+    		$('.timetype-0').show()
+    	}else{
+   			$('input[name=openday]').attr('required',false)
+    		$('input[name=closeday]').attr('required',false)
+    		$('input[type=date]').attr('required',true)
+    		$('.timetype-0').hide()
+    		$('.timetype-1').show()
+    	}
+    })
+    $('input[name=moneytype]').click(function(){
+    	console.log($(this).val())
+    	var int = $(this).val()
+    	int = parseInt(int)
+    	switch(int)
+		{
+		case 1:
+		  $('.moneytype').attr('required',false)
+		  $('input[name=listmoney]').attr('required',true)
+		  break;
+		case 2:
+		  $('.moneytype').attr('required',false)
+		  $('input[name=zhe]').attr('required',true)
+		  break;
+		case 3:
+		  $('.moneytype').attr('required',false)
+		  $('input[name=jian]').attr('required',true)
+		  break;
+		default:
+		  $('.moneytype').attr('required',false)
+		}
+    })
+    $(".select1").change(function(){
+	    var select=$(".select1").val()
+	    if (select==1) {
+	    	$('.chzn-container').css('display','inline-block')
+	    }else{
+	    	$('.chzn-container').css('display','none')
+	    }
+	});
+	$("input[name=open]").change(function(){
+	    var select=$("input[name=open]").val()
+	    $("input[name=close]").attr('min',select)
+	});
+  </script>
+</body>
+</html>

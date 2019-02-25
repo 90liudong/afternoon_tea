@@ -1,0 +1,15 @@
+.mask {       
+	display: none;
+    position: absolute; top: 0px;
+    filter: alpha(opacity=60);
+    background-color: #777;     
+    z-index: 1002; 
+    left: 0;     
+    top: 0;
+    right:0;
+    bottom: 0;
+    opacity:0.5;
+    -moz-opacity:0.5;    
+    text-align: center;
+    padding: 60% 0px;
+}     

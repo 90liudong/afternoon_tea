@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title> - 用户管理</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="__STATIC__/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link rel="stylesheet" href="__STATIC__/bPage/b.page.bootstrap3.css" type="text/css">
+    <link href="__STATIC__/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__STATIC__/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="__STATIC__/css/animate.css" rel="stylesheet">
+    <link href="__STATIC__/css/xwc.css" rel="stylesheet">
+    <link href="__STATIC__/css/style.css?v=4.1.0" rel="stylesheet">
+	<style type="text/css">
+	td {
+		text-align: center;
+	}
+	th {
+		text-align: center;
+	}
+	td img{
+		width: 60px;
+		height: 60px;
+	}
+	</style>
+</head>
+
+<body>
+<div>
+	<p style="float: left;margin-left: 3%;padding: 0 2%;">成交用户数：{$sum}</p>
+	<p style="margin-top: 30px;">用户数：{$size}</p>
+	<a class="dianji" onclick="showdiv()" style="float: right;margin-top: -38px;margin-right: 16%;border: 1px solid red;padding: 4px 2%;font-size: 16px;color: black;cursor: pointer;text-decoration: none;">展开查询</a>
+	<div style="clear: both;"></div>
+</div>
+<div id="show" class="box1" style="margin-top: 15px;display: none;margin-bottom: 20px;">
+	<form action="{:url('admin/index/user')}" method="post">
+	<div class="box-1">
+		<span style="font-size: 13px; margin-left: 10%;">用户昵称</span>
+		<input type="text" name="name" style="width: 50%;">
+	</div>
+
+	<div class="box-2">
+		<span style="font-size: 13px; margin-left: 10%;">用户ID</span>
+		<input type="text" name="userid" style="width: 50%;">
+	</div>
+
+	<div class="box-3">
+		<span style="font-size: 13px;margin-left: 10%;">购买次数</span>
+		<input type="text" name="num" style="width: 50%;">
+	</div>
+	
+	<div class="box-4">
+		<span style="font-size: 13px;margin-left: 10%;">下单时间</span>
+		<input type="text" name="ordertime" style="width: 50%;">
+	</div>
+
+	<div class="box-7">
+		<span style="font-size: 13px;margin-right: 1%;">类型</span>
+		<select style="width: 50%;" name="type">
+			<option value="0">全部</option>
+			<option value="1">标星</option>
+			<option value="2">未标星</option>
+		</select>
+	</div>
+	<div class="box-8">
+		<input type="submit" style="text-decoration: none;border: 1px solid red;padding: 5px 14px;margin: 0 20px;color: #151313;" class="find">
+		<input type="reset" style="text-decoration: none;border: 1px solid red;padding: 5px 14px;color: #151313;">
+	</div>
+	<div style="clear: both;"></div>
+	</form>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+	    <div class="col-sm-12">
+	        <div class="ibox float-e-margins">
+	            <div class="ibox-title">
+	                <h5>用户列表</h5>
+	            </div>
+	            <div class="ibox-content">
+
+	                <table class="table table-bordered">
+	                    <thead>
+	                        <tr>
+	                            <th>头像</th>
+	                            <th>昵称</th>
+	                            <th>用户ID</th>
+	                            <th>最后购买</th>
+	                            <th>购买次数</th>
+	                            <th>操作</th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                    {foreach data as $list}
+	                        <tr>
+	                            <td><img src="{$list.img}"></td>
+	                            <td>{$list.name}</td>
+	                            <td>{$list.userid}</td>
+	                            <td>{$list.lastbuy}</td>
+	                            <td>{$list.num}</td>
+	                            <td><a class="sign" uid="{$list.id}">{if condition="$list.type==0"}标星{else}已标星{/if}</a></td>
+	                        </tr>
+	                    {/foreach}
+	                    </tbody>
+	                </table>
+
+	            </div>
+	        </div>
+	    </div>
+	</div>
+    {if condition="$type==1"}
+	<div id="page1">
+	    <div class="pagination bPage bPageRight">
+	     <ul>
+	        <li id="bPageList" class="disabled bPageList"><a>每页 <select id="bPageDropList"><option value="5">5</option><option value="10">10</option><option value="15">15</option><option value="20">20</option></select> 条</a></li>
+	        <li id="bPageInfo" class="disabled bPageInfo"><a>当前显示第{$page}/{$maxPage}页（共{$size}条记录）</a></li>
+	        <li id="bPageFirstPage" class="bPageControlButton disabled"><a href="{$href}?page=1&each={$each}">首页</a></li>
+	        <li id="bPagePreviousPage" class="bPageControlButton disabled"><a href="{$href}?page={$page-1}&each={$each}">«</a></li>
+	        {foreach $pages as $p}
+	        <li><a href="{$href}?page={$p}&each={$each}">{$p}</a></li>
+	        {/foreach}
+	        <li id="bPageNextPage" class="bPageControlButton"><a href="{$href}?page={$page+1}&each={$each}">»</a></li>
+	        <li id="bPageLastPage" class="bPageControlButton"><a href="{$href}?page={$maxPage}&each={$each}">尾页</a></li>
+	     </ul>
+	    </div>
+	</div>
+	{/if}
+</div>
+
+
+
+<!-- 全局js -->
+<script src="__STATIC__/js/jquery.min.js?v=2.1.4"></script>
+<script src="__STATIC__/js/bootstrap.min.js?v=3.3.6"></script>
+<!-- Peity -->
+<script src="__STATIC__/js/plugins/peity/jquery.peity.min.js"></script>
+<!-- 自定义js -->
+<script  src="__STATIC__/bPage/b.page.js"></script>
+<script src="__STATIC__/js/content.js?v=1.0.0"></script>
+
+<script type="text/javascript">
+var flag = true
+var flag1 = true
+function showdiv(){
+	if ($('.dianji').html()=='展开查询') {
+		$('.dianji').html('收起查询')
+	}else{
+		$('.dianji').html('展开查询')
+	}
+	if(document.getElementById('show').style.display=='none'){
+		document.getElementById('show').style.display='block'; 
+	}else{
+		document.getElementById('show').style.display='none'; 
+	} 
+}
+$(function(){
+	{if condition="$type==1"}
+	    $("#bPageDropList").val("{$each}")
+	    $('.cardno-buttom').click(function(){
+	       var cardno = $(this).attr('cardno');
+	       $('.cardno-set').val(cardno)
+	    })
+	    $('#bPageDropList').change(function(){
+	        var each = $('#bPageDropList option:selected').text();
+	        var url = "{$href}?"
+	        var page ="{$page}"
+	        window.location.href=url+"page="+page+"&each="+each
+	    })
+    {/if}
+	$(".sign").click(function(){
+		if (flag) {
+			if($(this).html()=='标星'){
+				$(this).html("已标星")
+				var type = 1
+			}else{
+				$(this).html("标星")
+				var type = 0
+			}
+			var url = "{:url('admin/index/usertype')}"
+			var id = $(this).attr('uid')
+			$.post(url,{id:id,type:type},function(data){
+				flag = true
+			})
+		}
+	})
+})
+</script>
+
+
+</body>
+</html> 

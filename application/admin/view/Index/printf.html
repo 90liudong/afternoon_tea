@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>打印标签</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+	<meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico"> 
+    <link href="__STATIC__/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+	<link href="__STATIC__/css/jquery.bxslider.css" rel="stylesheet" type="text/css">
+    <link href="__STATIC__/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">	
+    <link href="__STATIC__/css/animate.css" rel="stylesheet">
+    <link href="__STATIC__/css/style.css?v=4.1.0" rel="stylesheet">
+	<style type="text/css">
+	.btn{
+		margin-top: 10px;
+		margin-left: 33%;
+	    background-color: white;
+	    border: 1px solid;
+	    padding: 5px;
+	}
+	.left{
+		margin: 0 auto;
+	    border: 1px solid;
+	    width: 40mm;
+		float: left;
+	    height: 30mm;
+	    padding: 5px;
+	}
+	.goods{
+		border: 1px solid;
+	    width: 12%;
+	    margin-left: 4%;
+	    height: 64px;
+	    margin-top: 20px;
+	    padding-top: 10px;
+	    padding-left: 14px;
+	    float: left;
+	}
+	.buttom{
+		float: left;
+		background-color: white;
+		border: 1px solid;
+		margin-top: 40px;
+		margin-left: 3%;
+	}
+	.btn{
+		display: block;
+	    margin: 0 auto;
+	    margin-top: 20px;
+	    background-color: white;
+	    border: 1px solid;
+	    padding: 5px;
+	}
+	.left1{
+	    width: 50%;
+    	float: left;
+	}
+	.left2{
+	    width: 50%;
+    	float: left;
+	}
+	.left2 .left{
+		margin-top: 100px;
+	}
+	.box{
+		padding-left: 45%;
+		margin-top: 50px;
+	}
+	.box .buttom{
+		float: left;
+	}
+	.left p{
+		word-wrap: break-word;
+    	white-space: normal;
+    	margin:0;
+    	width: 110%; 
+    	line-height: 16px;
+	}
+	.order{
+		border: 1px solid black;
+	    width: 80%;
+	    margin: 0 auto;
+	    padding-bottom: 40px;
+	    margin-top: 30px;
+	    margin-bottom: 50px;
+	}
+    .small-font{    
+　　　  font-size:12px; 
+        -webkit-transform-origin-x: 0;
+        -webkit-transform: scale(0.90);
+    }
+    .smallsize-font {
+　　　　font-size:10.8px;
+   　}
+	</style>
+</head>
+<body>
+	<button class="btn">打印全部</button>
+	{foreach order as $list}　　
+	<div class="order">
+		<div class="left1">
+			<div class="box">
+				<div class="left">
+					<p class="small-font smallsize-font">{$list.ordernum}</p>
+					<p class="small-font smallsize-font">时间:{$list.sendtime)}</p>
+					<p class="small-font smallsize-font">备注:{$list.extra}</p>
+				</div>
+				<button class="buttom">打印</button>
+				<div style="clear: both;"></div>
+			</div>
+			<div class="box">
+				<div class="left">
+					<p class="small-font smallsize-font">联系人：&nbsp;{$list.aname}</p>
+					<p class="small-font smallsize-font">地址:&nbsp;{$list.address}</p> 
+					<p class="small-font smallsize-font">{$list.tel}</p>
+				</div>
+				<button class="buttom">打印</button>
+				<div style="clear: both;"></div>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="left1">
+			{foreach $list.good as $good}
+			<div class="box" style="padding-left: 20%; ">
+				<div class="left">
+					<span>{$good.name}</span><br>
+					<span>数量：{$good.num}</span><br>
+					<span>&yen;{$good.money}</span>
+				</div>
+				<button class="buttom">打印</button>
+				<div style="clear: both;"></div>
+			</div>
+			{/foreach}
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+	{/foreach}
+</body>
+</html>

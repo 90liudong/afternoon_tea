@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>下单成功</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+
+
+	<style type="text/css">
+		body,html{
+			width: 100%;
+			height: 100%;
+			margin:0px;
+			padding:0px;
+		}
+		
+		.line1{
+    		text-align: center;
+    		font-size: 19px;
+    		font-weight: bold;
+    		    padding-top: 8%;
+    		    padding-bottom: 3%;
+
+		}
+		.line2{
+			text-align: center;
+			font-size: 14px;
+			color: gray;
+			    padding-bottom: 5%;
+		}
+		.line3{
+			text-align: center;
+		}
+		.imgs{
+			width: 105px;
+			height: 105px;
+			text-align: center;
+			
+		}
+		.line4{
+			text-align: center;
+			
+			font-size: 19px;
+    		font-weight: bold;
+    		    padding-top: 17%;
+		}
+		.line5{
+			text-align: center;
+			font-size: 14px;
+			color: gray;
+			    /*padding-bottom: 4%;*/
+		}
+		.box{
+			background-color: rgb(249,249,249);
+    		/*height: 22%;*/
+    		width: 100%;
+    		font-size: 14px;
+    		/*position: fixed;
+    		bottom: 0px;*/
+		}
+		.head{
+			text-align: center;
+			font-size: 19px;
+    		font-weight: bold;
+    		padding: 4%;
+		}
+		.data{
+			width: 80%;
+			/*background-color: blue;*/
+			margin:0 auto;
+			padding: 2% 0;
+		}
+		.rg{
+			padding-right: 45%;
+			padding-left: 8%;
+		}
+
+
+
+
+	</style>
+</head>
+<body>
+<div class="box1">
+	<div class="line1">下单成功，努力制作中</div>
+	<div class="line2">送达时间：{$order.sendtime}</div>
+	<div class="line3">
+		<img src="__STATIC__/img/11.png" class="imgs">
+	</div>
+	<div class="line4" >长按二维码</div>
+	<div class="line5">关注春夏秋冬服务号，跟踪订单信息</div>
+	<div class="line3">
+		<img src="__STATIC__/img/10.png" class="imgs" style="width: 85px;height: 85px; padding:5%;">
+	</div>
+
+
+</div>
+	<div class="box">
+		<div class="head">商品信息</div>
+		{foreach $order.good as $good}
+		<div class="data">
+			<span class="rg">{$good.name}</span>  
+			<span >x{$good.num}</span>
+		</div>
+		{/foreach}
+	</div>
+
+
+</body>
+</html>

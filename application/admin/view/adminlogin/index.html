@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>登录</title>
+	<script type="text/javascript" src="__STATIC__/js/jquery-3.2.1.min.js"></script>
+	<style type="text/css">
+	/*背景*/
+		html{
+			height: 100%;
+		}
+		body{
+			background-image: url("__STATIC__/img/lb.jpg");
+			background-size: 100%,100%;
+			text-align: center;
+		}
+
+	/*字体颜色和大小*/
+		.forn{
+			color:  white;
+			font-size: 13px;
+			text-align: left;
+		}
+
+	.zhanghao{
+		width:250px;
+		height:33px;
+		border:0;
+		border-radius: 2px;
+		padding-left: 10px;
+	}
+	.mima{
+		width:250px;
+		height:33px;
+		border:0;
+		border-radius: 2px;
+		padding-left: 10px;
+		margin-top:15px;
+		margin-bottom: 15px;
+	}
+	.wangji{
+		margin-top: 18px;
+		text-decoration: none;
+		color:  #3c3ce4;
+
+	}
+	.denglu{
+		width:260px;
+		height:33px;
+		background-color:#6cb731;
+		border:0;
+		border-radius:2px; 
+/*		margin-top: 15px;*/
+	}
+	.ziti{
+		color:  white;
+			font-size: 13px;
+	}
+	.bg{
+		display: inline-block;
+		margin-top: 200px;
+	}
+	.box {
+		display: inline-block;
+   		background-color: rgba(255,255,255,0.3);
+		padding: 27px;
+	}
+	.code{
+		width: 80px;
+		height: 33px;
+		padding-left: 10px;
+		border:0;
+		border-radius: 2px;
+		float: left;
+	}
+	.co{
+		display: inline-block;
+		float: right;
+	}
+	.code_a{
+		cursor:pointer;
+		font-size: 14px;
+		text-decoration: none;
+		color:  #3c3ce4;
+	}
+	</style>
+</head>
+<body>
+<div class="bg ">
+	<div class="box">
+		<p class="forn">登录：</p>
+		<form style="text-align: left;" action="{:url('admin/adminlogin/index')}" method="POST">
+			<input class="zhanghao" name="name" type="text" placeholder="名称" required><br>
+			<input class="mima" type="password" name="password" placeholder="密码"  required> <br>
+			<div>
+				<input class="code" name="yanzhengma" type="text" placeholder="验证码" required>
+				<div class="co">
+					<img src="{:captcha_src()}?t=shijiancuo" alt="captcha" style="width: 109px;"><br>
+					 <a class="code_a" >看不清楚，换一张</a>
+				 </div>
+				<div style="clear: both;"></div>
+			</div>
+			<input class="denglu ziti" type="submit" value ="登录"> <br>
+		</form>
+	</div>
+
+	<hr>
+	<p class="forn">@春夏秋冬</p>
+</div>
+</body>
+<script type="text/javascript">
+	$(function(){
+		$('.code_a').click(function(){
+			target = $(this).parent().find('img');
+			target.attr('src',"{:captcha_src()}?t="+(new Date().getTime()))
+
+		})
+	})
+</script>
+</html>

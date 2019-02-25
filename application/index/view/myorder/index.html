@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>我的订单</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+	  <!-- Bootstrap -->
+    <link href="__STATIC__/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__STATIC__/css/font-awesome.css" rel="stylesheet">
+    <link href="__STATIC__/css/main.css" rel="stylesheet">
+	<style type="text/css">
+	html,body{
+		padding: 0px;
+		margin:0px;
+		background-color: rgb(242,242,242);
+	}
+	.box{
+		background-color: white;
+		/*width: 100%;*/
+		margin:10px 6px;
+	}
+	.line1{
+		padding: 2% 5%;
+
+	}
+	.line1-lt{
+		font-weight:bolder;
+		font-size: 16px;
+		vertical-align: middle;
+	}
+	.line1-rig{
+		font-size: 12px;
+		color: gray;
+		margin-left: 4%;
+	}
+	.line2{
+		padding: 1% 5%;
+		/*border-bottom: 1px solid red;*/
+
+	}
+	.line2-lt{
+		font-size: 12px;
+		color: gray;
+	}
+	.line2-rig{
+		font-size: 16px;
+		color: #AF2B2E;
+		float: right;
+	}
+	.white-line{
+		width: 97%;
+	    background-color: rgb(242,242,242);
+	    height: 1px;
+	    margin-top: 2%;
+	    float: right;
+	}
+	.line3{
+		margin:2%;
+	}
+	.line3 button{
+		float: right;
+		padding: 2% 4%;
+		font-size: 12px;
+		background-color: rgb(153,153,153);
+		border: 0px;
+		margin:2%;
+		border-radius: 3px;
+
+	}
+	.line3 span{
+		float: left;
+	    color: gray;
+	    font-size: 15px;
+	    margin-left: 10px;
+	    line-height: 35px;
+	}
+
+	</style>
+
+</head>
+<body>
+	<div id="mask" class="mask">
+		<i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="color: rgba(250,250,250,1);"></i>
+		<span class="sr-only">Loading...</span>
+	</div> 
+	{empty name="$data"}
+      <div style="width: 100%;">
+          <img src="__STATIC__/img/12.png" style="margin:0 auto;display: block;">
+      </div>
+      <div style="width: 100%;text-align: center;">
+        <span>您还没有订单哦，赶快去购买吧。</span>
+      </div>
+      <div style="width: 100%;text-align: center;margin-top: 15px;">
+          <a class="btn btn-primary" href="{:url('index/pro/index')}">去购买</a>
+      </div>
+    {/empty}
+    <form action="{:url('index/pay/wxpay')}" method="get" style="display: none;">
+		<input type="text" name="cid" value="">
+    </form>
+    {foreach data as $list}
+	<div class="box" oid="{$list.id}" type="{$list.status}">
+		<div class="line1">
+			<span class="line1-lt">{$list.good.name}</span>
+			<span  class="line1-rig">{$list.num}</span>
+		</div>
+		<div class="line2">
+			<span class="line2-lt">{$list.ordertime}</span>
+			<span class="line2-rig">&yen;{$list.money}</span>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="white-line"></div>
+		<div style="clear: both;"></div>
+		<div class="line3">
+		{switch name="list.status"}
+			{case value="0"}
+				<span>待支付</span>
+				<button oid="{$list.id}" status="{$list.status}">取消</button>
+				<button oid="{$list.id}">微信支付</button>
+			{/case}
+			{case value="1"}
+				<span>制作中</span>
+			{/case}
+			{case value="2"}
+				<span>配送中</span>
+			{/case}
+			{case value="3"}
+				<span>待评价</span>
+				<button oid="{$list.id}">评价</button>
+			{/case}
+			{case value="4"}
+				<span>已完成</span>
+				<button oid="{$list.id}" status="{$list.status}">删除</button>
+			{/case}
+			{default /}
+				<span>已取消</span>
+				<button oid="{$list.id}" status="{$list.status}">删除</button>
+		{/switch}
+			<div style="clear: both;"></div>
+		</div>
+	</div>
+	{/foreach}
+
+</body>
+<script type="text/javascript" src="__STATIC__/js/jquery-1.9.1.min.js"></script>
+<pre class="html" name="code" style="display: none;">
+<script type="text/javascript">     
+    function showMask(){     
+        $("#mask").css("height",$(document).height());     
+        $("#mask").css("width",$(document).width());     
+        $("#mask").show();     
+    }  
+    function hideMask(){     
+        $("#mask").hide();     
+    }  
+    $(function(){
+    	$('.box').click(function(a){
+    		if (!$(a.target).is("button,button*")) {
+                var type = $(this).attr('type')
+	    		var cid = $(this).attr('oid')
+	    		if (type==0) {
+	    			window.location.href="{:url('index/news/waite')}?cid="+cid
+	    		}else if(type==1){
+	    			window.location.href="{:url('index/news/make')}?cid="+cid
+	    		}else if(type==2){
+	    			window.location.href="{:url('index/news/song')}?cid="+cid
+	    		}else if(type==3){
+	    			window.location.href="{:url('index/news/arrive')}?cid="+cid
+	    		}else if(type==5){
+	    			window.location.href="{:url('index/news/cancel')}?cid="+cid
+	    		}
+            }
+    	})
+		$("button").click(function(){
+			var oid = $(this).attr('oid')
+			var str = $(this).html()
+			switch(str){
+				case '微信支付':
+				var cid = $(this).attr('oid')
+				console.log(cid)
+				// 支付链接
+				$('input[name=cid]').val(cid)
+				$('form').submit()
+				break;
+				case '评价':
+				// 支付链接
+				window.location.href="{:url('index/like/index')}?id="+oid
+				break;
+				default:
+				var status = $(this).attr('status')
+				var url = "{:url('index/myorder/dele')}"
+				showMask()
+				$.post(url,{id:oid,status:status},function(data){
+					console.log(data)
+					hideMask()
+					if (status==0) {
+						alert('你已经成功取消该订单')
+						$('button').hide()
+					}else{
+						alert('你已经成功删除该订单')
+						$('div[oid='+oid+']').hide()
+					}
+				})
+			}
+		})
+    })
+</script>
+</html>

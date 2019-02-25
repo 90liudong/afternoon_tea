@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>备注</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+	<meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico"> <link href="__STATIC__/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__STATIC__/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="__STATIC__/css/animate.css" rel="stylesheet">
+    <link href="__STATIC__/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="__STATIC__/css/main.css" rel="stylesheet">
+	<style type="text/css">
+		body,html{
+			width: 100%;
+			height: 100%;
+			margin:0px;
+			padding:0px;
+			background-color: rgb(242,242,242);
+		}
+		.inputtext {
+			border:none; 
+			background:#fff;
+			width: 15px;
+		}
+		.btn{
+			margin-top:15px;
+			background-color: white;
+			padding-left: 20px;
+			padding-right: 20px;
+			
+		}
+		.imgs{
+			width: 80px;
+			height: 80px;
+			margin: 0 5%;
+		}
+		.box{
+			
+			width: 216px;
+			margin:0 auto;
+
+			
+		}
+		.login-box{
+			float: left;
+			width: 98px;
+			margin:0 5px;
+
+
+		}
+		.bbox{
+			margin-top: 30%;
+
+		}
+		.foot{
+		width: 100%;
+		height: 39px;
+		background-color: rgb(153,153,153);
+		position: fixed;
+		bottom: 0px;
+		}
+		.foot span{
+			font-size: 16px;
+		    text-align: center;
+		    display: block;
+		    padding: 7px 0;
+		    color: black;
+			}
+		
+
+	</style>
+</head>
+<body>
+	<div id="mask" class="mask">
+		<i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="color: rgba(250,250,250,1);"></i>
+		<span class="sr-only">Loading...</span>
+	</div> 
+	<div class="col-sm-8" style="padding-top:11px;width: 100%;">
+		<form action="SaveData.asp" method="post" id="text">
+			<textarea id="ccomment" name="Memo" class="form-control" rows="10" wrap=PHYSICAL cols="40" onKeyDown="gbcount(this.form.Memo,this.form.total,this.form.used,this.form.remain);" onKeyUp="gbcount(this.form.Memo,this.form.total,this.form.used,this.form.remain);" style="position: relative;" placeholder="在此输入您的意见"></textarea>
+			
+			<input disabled maxLength="4" name="total" size="3" value="50" class="inputtext" style="display: none;">
+			
+			<input disabled maxLength="4" name="used" size="3" value="0" class="inputtext" style="position: absolute; top:203px; right: 40px;">
+			<span style="position: absolute; top:204px; right: 37px;">/</span>
+			<input disabled maxLength="4" name="remain" size="3" value="50" class="inputtext" style="position: absolute;top:203px;right: 20px;">
+			<input type="number" name="good" style="display: none;">
+			<input type="submit" style="display: none;">
+		</form>
+    </div>
+	<!-- <div> -->
+	<div style="clear: both;"></div>
+    <input type="button" value="咖啡赞" class="btn" style="margin-left: 15px;">
+    <input type="button" value="点心赞" class="btn" style="margin-left: 5px;">
+	<!-- </div> -->
+	<div class="bbox">
+		<div class="box">
+		    <div class="login-box">
+			    <img src="__STATIC__/img/01.png" class="imgs" val="0">
+			    <img src="__STATIC__/img/011.png" class="imgs" val="1" style="display: none;">
+			    <span style="display: block; width: 80px;margin: 0 5%;text-align: center;">差评</span>
+		    </div>
+
+		    <div class="login-box">
+			    <img src="__STATIC__/img/02.png" class="imgs" val="2">
+			    <img src="__STATIC__/img/022.png" class="imgs" val="3" style="display: none;">
+			    <span style="display: block; width: 80px;margin: 0 5%;text-align: center;">好评</span>
+		    </div>
+		   <div style="clear: both;"></div>
+	    </div>
+	</div>
+
+
+	<div class="foot">
+	<span onclick="push()">提交</span>
+	</div>
+ 
+	 <!-- 全局js -->
+    <script src="__STATIC__/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__STATIC__/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="__STATIC__/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="__STATIC__/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="__STATIC__/js/plugins/layer/layer.min.js"></script>
+
+    <!-- 自定义js -->
+    <script src="__STATIC__/js/hAdmin.js?v=4.1.0"></script>
+    <script type="text/javascript" src="__STATIC__/js/index.js"></script>
+
+    <!-- 第三方插件 -->
+    <!-- <script src="__STATIC__/js/plugins/pace/pace.min.js"></script> -->
+    <script type="text/javascript">
+    $(function(){
+	    $('input[type=button]').click(function(){
+	    	var text = $(this).val()
+		    var str = $('textarea').val()
+		    $('textarea').val(str+text)
+		    jQuery('textarea').trigger("keydown");
+	    })
+	    $('.imgs').click(function(){
+	    	var val = $(this).attr('val')
+	    	switch(val){
+	    		case '0':
+	    		$('img[val=0]').hide()
+	    		$('img[val=1]').show()
+	    		$('img[val=3]').hide()
+	    		$('img[val=2]').show()
+	    		$('input[name=good]').val(0)
+	    		break;
+	    		default:
+	    		$('img[val=2]').hide()
+	    		$('img[val=3]').show()
+	    		$('img[val=1]').hide()
+	    		$('img[val=0]').show()
+	    		$('input[name=good]').val(1)
+	    		break;
+	    	}
+	    })
+    })
+    function getUrlParam(name){  
+	//构造一个含有目标参数的正则表达式对象  
+	var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");  
+	//匹配目标参数  
+	var r = window.location.search.substr(1).match(reg);  
+	//返回参数值  
+	if (r!=null) return unescape(r[2]);  
+	return null;  
+	}  
+    function showMask(){     
+        $("#mask").css("height",$(document).height());     
+        $("#mask").css("width",$(document).width());     
+        $("#mask").show();     
+    }  
+    function hideMask(){     
+        $("#mask").hide();     
+    }  
+    function push(){
+    	var txt = $('textarea').val()
+    	var good = $('input[name=good]').val()
+    	if (txt=='') {
+    		alert('请输入评价')
+    		$('textarea').focus()
+    		return;
+    	}
+    	if (good=='') {
+    		alert('请选择评价')
+    		return;
+    	}
+    	showMask()
+    	var id = getUrlParam('id')
+    	if (id==null) {
+    		alert('订单不存在')
+    		window.location.href="{:url('index/myorder/index')}"
+    		return;
+    	}
+    	var url = "{:url('index/like/pingjia')}"
+    	$.post(url,{id:id,txt:txt,good:good},function(){
+ 			hideMask()
+ 			alert('评价成功')
+ 			window.location.href="{:url('index/myorder/index')}"
+    	})
+    }
+    function checktext(text)
+	{
+		allValid = true;
+		for (i = 0;  i < text.length;  i++)
+		{
+			if (text.charAt(i) != " ")
+			{
+				allValid = false;
+				break;
+			}
+		}
+	return allValid;
+	}
+
+	function gbcount(message,total,used,remain)
+	{
+	var max;
+	max = total.value;
+	if (message.value.length > max) {
+	message.value = message.value.substring(0,max);
+	used.value = max;
+	remain.value = 0;
+	alert("评价不能超过 50 个字!");
+	}
+	else {
+		used.value = message.value.length;
+		remain.value = max - used.value;
+		}
+	}
+    </script>
+</body>
+</html>

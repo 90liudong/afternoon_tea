@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>微信用户在线支付</title>
+<meta charset="utf-8" />
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<meta name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/wxzf.css">
+<script type="text/javascript">
+    function jsApiCall()
+        {
+
+            var b={$parameters};
+            WeixinJSBridge.invoke(
+                    'getBrandWCPayRequest',
+                    {
+                         "appId":b.appId,
+                         "nonceStr":b.nonceStr,
+                         "package":b.package,
+                         "paySign":b.paySign,
+                         "signType":b.signType,
+                         "timeStamp":b.timeStamp,
+                         "notifyUrl":b.notifyUrl
+                    },
+                    function(res){
+                        if(res.err_msg == 'get_brand_wcpay_request:ok'){
+                            window.location.href = "{:url('index/order/index')}"
+                        }else{
+                            alert('支付失败');
+                        }
+                    }
+            );
+        }
+        function callpay(){
+            if (typeof WeixinJSBridge == "undefined"){
+                if( document.addEventListener ){
+                    document.addEventListener('WeixinJSBridgeReady', jsApiCall,false);
+                }else if (document.attachEvent){
+                    document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                    document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+                }
+            }else{
+                jsApiCall();
+            }
+        }
+</script>
+</head>
+<body>
+<div class="wenx_xx">
+  <div class="mz">春夏秋冬下午茶</div>
+  <div class="wxzf_price">&yen;{$Think.session.pays}元</div>
+</div>
+<div class="skf_xinf">
+  <div class="all_w"> <span class="bt">收款方</span> <span class="fr">春夏秋冬下午茶</span> </div>
+</div>
+<a class="ljzf_but all_w" onclick="callpay()">立即支付</a> 
+</body>
+</html>

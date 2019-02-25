@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+	<title> hAdmin- 主页</title>
+    <script type="text/javascript" src="__STATIC__/jquery-3.2.1.min (1).js"></script>
+
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="__STATIC__/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__STATIC__/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="__STATIC__/css/animate.css" rel="stylesheet">
+    <link href="__STATIC__/css/style.css?v=4.1.0" rel="stylesheet">
+    <style type="text/css">
+    .head{
+        margin-left: 42px;
+        font-size: 17px;
+    }
+
+    .text{
+        margin-left: 100px;
+        margin-top: 100px;
+        height: 32px;
+        padding-left: 10px; 
+    }
+    .slide{
+        margin-left: 42px;font-size: 16px;margin-top: 20px;
+    }
+   .move{   
+        height: 25px;
+        width: 25px;
+        background: white;
+        border: 1px solid;
+        border-radius: 4px;
+        padding: 1.5px 2.7px;
+    }
+    .save{
+       background-color: #3EBD00;text-align: center;border: none;color: white;width: 66px;height: 33px;display: none;
+   }
+   .tipname{
+      margin-left: 8px
+   }
+   .show1{
+      margin-left: 10px;cursor: pointer;
+   }
+   .write{
+      margin-left: 10px;cursor: pointer;
+   }
+   .one{
+    float: left;width: 120px;height: 33px;line-height: 33px;
+   }
+   .two{
+    float: left;margin-left: 50px;
+   }
+   .three{
+    float: left;    margin-left: 62px;
+   }
+    </style>  
+
+</head>
+<body>
+    <div style="margin-top: 14px;margin-left: 40px;font-size: 24px;color: #e84343;margin-bottom: 30px;">标签管理</div>
+    <div class="head">
+        <span>标签名称</span><span style="margin-left: 100px;">显示顺序</span><span style="margin-left: 100px;">操作</span>
+    </div>
+<div class="tip">
+    {foreach $data as $item}
+        <div class="slide" tid="{$item.id}" list="{$item.list}">
+            <div class="one"><span class="tipname">{$item.name}</span></div>
+            <span><input type="button" class="save" value="保存" ></span>
+            <div class="two">
+                <span >
+                <i class="fa fa-chevron-up move" ></i>&nbsp;&nbsp;
+                <i id="down" class="fa fa-chevron-down move" ></i>
+                </span>
+            </div>
+            <div class="three">
+                <span class="del" style="cursor: pointer;">删除</span>
+                <span class="write" >编辑</span>
+                <span class="show1" >{if condition="$item.type eq 1"}已显示{else/}显示{/if}</span>
+            </div>
+            <div style="clear: both;"></div>
+        </div> 
+    {/foreach} 
+
+</div>
+<!--     <div class="active">
+        <div style="width: 97px;height: 33px;position: absolute;left: 36px;top: 201px;border: 1px solid;"></div>
+        
+    </div> -->
+
+
+
+<input type="text" name="label" maxlength="6" placeholder="请输入标签" class="text">
+<input type="button" name="add" class="text" value="添加" style="background-color: #3EBD00;text-align: center;border: none;color: white;margin-left: 25px;width: 100px;">
+
+<script type="text/javascript">
+$(document).on("click",".show1",function(){
+    var flag = $(this).html(); 
+    tid = $(this).parent().parent().attr("tid")
+    // console.log(tid)
+    if(flag =="显示"){
+        $(this).html("已显示");
+        $.post("{:url('show')}",{tid:tid,type:"1"},function(){
+
+        }) 
+       
+    }else{
+        $(this).html("显示");
+        $.post("{:url('show')}",{tid:tid,type:"0"},function(){
+
+        }) 
+    }  
+   
+    
+})
+$(document).on("click",".del",function(){
+    if(confirm("确定删除此标签？")){
+        tt = $(this).parent().parent();
+        tid = $(this).parent().parent().attr("tid")
+        $.post("{:url('delOne')}",{tid:tid},function(){
+            tt.remove()
+        }) 
+    }
+})
+$(document).on("click",".write",function(){
+    $(this).parent().parent().find(".two").hide();
+    $(this).parent().parent().find(".three").hide();
+    $(this).parent().parent().find(".save").show();
+    $(this).parent().parent().find(".tipname").each(function() {  
+           data = $(this).find("input:text"); 
+           // console.log(data.length)   
+            if(!data.length)  {
+                $(this).html("<input class='txt' style='outline:none;width: 105px;height: 33px;' type='text' value='"+$(this).text()+"'>");
+            } else  {
+                 $(this).html(data.val()); 
+            }
+        });
+})
+$(document).on("click",".save",function(){
+    $(this).parent().parent().find(".two").show();
+    $(this).parent().parent().find(".three").show();
+    $(this).parent().parent().find(".save").hide();
+    $(this).parent().parent().find(".tipname").each(function() {  
+       data = $(this).find("input:text"); 
+       // console.log(data.length)   
+        if(!data.length)  {
+            $(this).html("<input class='txt' style='outline:none;width: 105px;height: 33px;' type='text' value='"+$(this).text()+"'>");
+        } else  {
+             $(this).html(data.val()); 
+        }
+    });
+    tid = $(this).parent().parent().attr("tid")
+    name = $(this).parent().parent().find(".tipname").html()
+    $.post("{:url('changeName')}",{tid:tid,name:name},function(data){
+        console.log(data)
+    })
+})
+$(".edit").click(function(){
+   
+    $(".active").toggle();    
+    
+})
+//上移
+$(document).on("click",".fa-chevron-up",function(){
+    var onthis=$(this).parent().parent().parent(); 
+       tid1 = onthis.attr("tid")
+       list = onthis.attr("list")
+
+      if (list==1)  
+       {  
+            alert("第一不能上移");  
+            return;  
+       }else{
+            var getUp=onthis.prev();
+            tid2 = getUp.attr("tid")
+            list2 = getUp.attr("list")
+            console.log(tid1,tid2,list,list2)
+            $.post("{:url('changeListUp')}",{tid1:tid1,tid2:tid2,list:list,list2:list2},function(data){
+                
+                onthis.attr("tid",tid1)
+                onthis.attr("list",list2)
+                getUp.attr("tid",tid2)
+                getUp.attr("list",list)
+                $(onthis).after(getUp);
+            }) 
+       }   
+
+})
+//下移
+$(document).on("click",".fa-chevron-down",function(){
+    var onthis=$(this).parent().parent().parent(); 
+    tid1 = onthis.attr("tid")
+    list = onthis.attr("list")
+    var getdown=onthis.next();
+    tid2 = getdown.attr("tid")
+    list2 = getdown.attr("list")
+    have = getdown.html()
+    if (have == undefined) {
+        alert("最后一个不能下移")
+        return
+    }else{
+        $.post("{:url('changeListDown')}",{tid1:tid1,tid2:tid2,list:list,list2:list2},function(data){
+            onthis.attr("tid",tid1)
+            onthis.attr("list",list2)
+            getdown.attr("tid",tid2)
+            getdown.attr("list",list)
+            $(getdown).after(onthis); 
+        }) 
+    }
+      
+ }  )
+
+$("input[name=add]").click(function(){
+    console.log(123456)
+    onetip = $("input[name=label]").val()
+    if(onetip != ""){
+        // ajax 执行完在append
+        $.post("{:url('addOne')}",{name:onetip},function(data){
+            console.log(data);
+           $(".tip").append('<div class="slide" tid="'+data[0]+'" list="'+data[2]+'"><div class="one"><span class="tipname">'+data[1]+'</span></div><span><input type="button" class="save" value="保存"></span><div class="two"><span><i class="fa fa-chevron-up move"></i>&nbsp;&nbsp;<i id="down" class="fa fa-chevron-down move"></i></span></div><div class="three"><span class="del" style="cursor:pointer">删除</span> <span class="write">编辑</span> <span class="show1">显示</span></div><div style="clear:both"></div></div>')
+           
+
+        }) 
+        $("input[name=label]").val("")
+    }
+})
+
+
+</script>
+<script src="__STATIC__/js/jquery.min.js?v=2.1.4"></script>
+<script src="__STATIC__/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="__STATIC__/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="__STATIC__/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="__STATIC__/js/plugins/layer/layer.min.js"></script>
+
+<!-- 自定义js -->
+<script src="__STATIC__/js/hAdmin.js?v=4.1.0"></script>
+<script type="text/javascript" src="__STATIC__/js/index.js"></script>
+
+<!-- 第三方插件 -->
+<script src="__STATIC__/js/plugins/pace/pace.min.js"></script>
+</body>
+</html>

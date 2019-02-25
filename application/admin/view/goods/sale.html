@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+	<title> hAdmin- 主页</title>
+    <script type="text/javascript" src="__STATIC__/jquery-3.2.1.min (1).js"></script>
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="__STATIC__/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link rel="stylesheet" href="__STATIC__/bPage/b.page.bootstrap3.css" type="text/css">
+
+    <link href="__STATIC__/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="__STATIC__/css/animate.css" rel="stylesheet">
+    <link href="__STATIC__/css/style.css?v=4.1.0" rel="stylesheet">
+     <style type="text/css">
+     	.line1{
+			margin-top: 20px;
+			margin-right: 50px;
+     	}
+     	.line2{
+     		padding-top: 10px;
+     		width: 90%;
+     		height: 50px;
+         	background-color: #F5F5F6;
+            margin: 0 auto;
+			margin-top: 20px;
+     	}
+        .box{
+            width: 90%;
+            margin: 0 auto;
+            margin-top: 15px;
+            padding-bottom: 100px;
+        }
+        .tr{
+         	background-color: #F5F5F6;
+        }
+        .td{
+        	height: 100px;
+        }
+		.btn{
+			float: right;
+			margin-right: 10px;
+			width: 80px;
+			margin-top: 20px;
+		}
+		.checkbox{
+			float: left;
+			margin-left: 30px;
+		}
+		.btn1{
+			/*float: left;*/
+		    margin-right: 10px;
+		    width: 80px;
+		    margin-top: 6px;
+		    margin-left: 20px;
+		}
+		.page{
+			float: right;
+			margin-top: -20px;
+			margin-right: 10px;
+		}
+		.text{
+			float: right;
+		    width: 30px;
+		
+		}
+        .btn2{
+            float: right;
+            margin-right: 10px;
+            width: 80px;
+            margin-top: 20px;
+            height: 30px;
+        }
+        .btn3{
+            float: right;
+            margin-right: 10px;
+            width: 80px;
+            margin-top: 20px;
+            height: 30px;
+        }
+        .btn4{
+            float: right;
+            margin-right: 10px;
+            width: 80px;
+            height: 30px;
+        }
+        .btn5{
+            float: right;
+            margin-right: 10px;
+            width: 80px;
+            height: 30px;
+        }
+        .sele{
+            float: left;
+            margin-top: 38px;
+            width: 15px;
+            height: 20px;
+            max-width: 30PX;
+            max-height: 30px;
+        }
+        .gimage{
+            float: left;
+            width: 80px;
+            height: 80px;
+            /*background: red;*/
+            margin-left: 20px;
+        }
+        .sname{
+            /* display: inline-block; */
+            float: left;
+            margin-top: 5px;
+            vertical-align: middle;
+            margin-left: 20px;
+            font-size: 15px;
+            /* line-height: 100px; */
+        }
+        th,td{
+            text-align: center;
+            font-size: 15px;
+        }
+        #debugInfo{
+            width: 15px;
+            height: 20px;
+            margin-left: 7px;
+            margin-right: 20px;  
+        }
+    </style>
+
+</head>
+<body>
+<div class="line1">
+    <input type="submit" value="查询" class="btn3">
+<form action="{:url('admin/goods/edit')}" method="post">
+    <input type="submit" value="发布商品" class="btn2">
+</form>
+    <div style="clear: both;"></div>
+</div>	
+
+<div class="line2" style="display:none">
+
+	<div>
+		<span style="margin-left: 20px;">商品编号</span><input type="num" name="num" style="margin-left: 30px;">	
+		<span style="margin-left: 50px;">商品名称</span><input type="text" name="name" style="margin-left: 30px;">
+    <input type="submit" value="重置" class="btn4" style="float: right;">
+    <input type="submit" value="查询" class="btn5" style="float: right;">
+    <div style="clear: both;"></div>
+	</div>
+</div>	
+
+
+<div class="box">
+	<div class="ibox-content">
+
+        <table class="table table-hover">
+            <thead>
+                <tr class="tr">
+                    <th style="width: 330px;text-align: center;">商品</th>
+                    <th>单价</th>
+                    <th>库存</th>
+                    <th>销量</th>
+                    <th>发布时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="list">
+            {foreach $data as $item}
+                <tr>
+                    <td class="td" style="width: 330px;text-align: center;">
+                    <input id="addBehaviorOnToastClick" type="checkbox" gid="{$item.id}"  class="input-mini sele" name="subChk" style="margin-top: 30px;">
+                    <div class="gimage"><img src="__STATIC__/goodimage/{$item.img}" style="width: 100%;height: 100%;"></div>
+                    <div class="sname">{$item.name}<br><br>{$item.idd}</div>
+                    </td>
+                    <td>{$item.money}
+                    </td>
+                    <td>
+                        {if condition="$item.number eq -1"}不限量{else/}{$item.number}{/if}
+                    </td>
+                    <td>{$item.sale}</td>
+                    <td>{:date("Y-m-d H:i:s",$item.time)}</td>
+                    <td gid="{$item.id}" class="text-navy" style="cursor: pointer;">编辑</td>
+                </tr>
+            {/foreach}
+                    
+
+            </tbody>
+
+        </table>
+<div id="page1" style="float: right;">
+     <div class="pagination bPage bPageRight">
+         <ul>
+             <li id="bPageList" class="disabled bPageList"><a>每页 <select id="bPageDropList"><option  value="5">5</option><option  value="10">10</option><option  value="15">15</option><option  value="20">20</option></select> 条</a></li>
+             <li id="bPageInfo" class="disabled bPageInfo"><a>当前显示第{$page}/{$maxPage}页（共{:count($data)}条记录）</a></li>
+
+             <li id="bPageFirstPage" class="bPageControlButton disabled"><a href='{$href}page=1&each={$each}'>首页</a></li>
+
+             <li id="bPagePreviousPage" class="bPageControlButton disabled"><a href="{$href}page={$page-1}&each={$each}">«</a></li>
+
+             <!-- <li class="active"><a href="">1</a></li> -->
+             {foreach $pages as $p}
+             <li {if condition="$p eq $page"} class="active"{/if}><a href="{$href}page={$p}&each={$each}">{$p}</a></li>
+             {/foreach}
+
+             <li id="bPageNextPage" class="bPageControlButton"><a href="{$href}page={$page+1}&each={$each}">»</a></li>
+             <li id="bPageLastPage" class="bPageControlButton"><a href="{$href}page={$maxPage}&each={$each}">尾页</a></li>
+         </ul>
+     </div>
+ </div>
+<div class="amount" style="float: right;margin-top: 10px;margin-right: 22px">当前数据共&nbsp;&nbsp;{$amount}&nbsp;&nbsp;条</div>
+<div style="float:left;">
+
+    <input id="debugInfo" type="checkbox"  class="input-mini" ><div style="    display: inline-block;
+    font-size: 18px;">全选</div>
+
+    <input id="delAll" type="submit" value="删除" class="btn1">
+</div>
+</div>
+
+    
+
+</div>
+
+
+
+<script type="text/javascript">
+
+$(".btn3").click(function(){
+    $(".line2").toggle();
+    if ($(this).val() == "查询") {
+        $(this).val("收起查询")
+    }else{
+        $(this).val("查询")
+    }
+    
+
+})
+
+$(".btn4").click(function(){
+    $("input[name=num]").val("");
+    $("input[name=name]").val("");
+
+})
+$(".text-navy").click(function(){
+    gid = $(this).attr("gid")
+    window.location.href="{:url('gedit')}?gid="+gid
+})
+$(".btn5").click(function(){
+    num = $("input[name=num]").val();
+    name = $("input[name=name]").val();
+    console.log(num)
+    console.log(name)
+// function tiaozhuan(){
+//     window.location.href='{:url('admin/goods/edit')}'
+// }
+
+    if (num!="") {
+      $.post("{:url('search')}",{num:num},function(data){
+        // console.log(data)
+        $("#list").html("");
+        $("#page1").remove();
+        $(".amount").remove();
+        if (data['number']==-1) {
+          data['number']="不限量"
+        }
+        $("#list").append('<tr><td class="td" style="width:330px;text-align:center"><input id="addBehaviorOnToastClick" type="checkbox" gid="'+data['id']+'" class="input-mini sele" name="subChk" style="margin-top:38px"><div class="gimage"><img src="__STATIC__/goodimage/'+data['img']+'" style="width:100%;height:100%"></div><div class="sname">'+data['name']+'<br><br>'+data['idd']+'</div></td><td>'+data['money']+'</td><td>'+data['number']+'</td><td>'+data['sale']+'</td><td>'+data['time']+'</td><td class="text-navy" style="cursor:pointer">编辑</td></tr>')
+      })
+    }else if(num==""&&name!=""){
+        $.post("{:url('searchName')}",{name:name},function(data){
+           // console.log(data)
+           // console.log(data)
+          $("#list").html("");
+          $("#page1").remove();
+          $(".amount").remove();
+          if (data['number']==-1) {
+            data['number']="不限量"
+          }
+          $("#list").append('<tr><td class="td" style="width:330px;text-align:center"><input id="addBehaviorOnToastClick" type="checkbox" gid="'+data['id']+'" class="input-mini sele" name="subChk" style="margin-top:38px"><div class="gimage"><img src="__STATIC__/goodimage/'+data['img']+'" style="width:100%;height:100%"></div><div class="sname">'+data['name']+'<br><br>'+data['idd']+'</div></td><td>'+data['money']+'</td><td>'+data['number']+'</td><td>'+data['sale']+'</td><td>'+data['time']+'</td><td class="text-navy" style="cursor:pointer">编辑</td></tr>')
+        })
+    }
+   
+})
+// function tiaozhuan(){
+//     window.location.href='{:url('admin/goods/edit')}'
+// }
+$("#delAll").click(function(){
+     // 判断是否至少选择一项   
+      var checkedNum = $("input[name='subChk']:checked").length;   
+      if(checkedNum == 0) {   
+          alert("请选择至少一项！");   
+          return;   
+      }  
+       if(confirm("确定要删除所选？")) {   
+          var checkedList = new Array();   
+          $("input[name='subChk']:checked").each(function() {   
+              checkedList.push($(this).attr("gid"));   
+          });   
+        // checkedList = JSON.stringify(checkedList);
+        var url = "{:url('admin/goods/delSome')}"
+        console.log(checkedList)
+        $.post(url,{array:checkedList},function(data){
+            console.log(data)
+            window.location.reload();
+        }) 
+      }
+});
+$("#debugInfo").click(function(){   
+    if(this.checked){   
+        $("#list :checkbox").prop("checked", true);  
+    }else{   
+    $("#list :checkbox").prop("checked", false);
+    }   
+});
+$("#bPageDropList").val("{$each}")
+$('#bPageDropList').change(function(){
+     var each = $('#bPageDropList option:selected').text();
+     var url = "{$href}"
+     window.location.href=url+"&each="+each
+})
+</script>
+
+<script src="__STATIC__/js/jquery.min.js?v=2.1.4"></script>
+<script src="__STATIC__/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="__STATIC__/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="__STATIC__/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="__STATIC__/js/plugins/layer/layer.min.js"></script>
+
+<!-- 自定义js -->
+<script src="__STATIC__/js/hAdmin.js?v=4.1.0"></script>
+<script type="text/javascript" src="__STATIC__/js/index.js"></script>
+
+</body>
+</html>

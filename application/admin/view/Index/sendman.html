@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title> - 用户管理</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="__STATIC__/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link rel="stylesheet" href="__STATIC__/bPage/b.page.bootstrap3.css" type="text/css">
+    <link href="__STATIC__/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__STATIC__/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="__STATIC__/css/animate.css" rel="stylesheet">
+    <link href="__STATIC__/css/xwc.css" rel="stylesheet">
+    <link href="__STATIC__/css/style.css?v=4.1.0" rel="stylesheet">
+	<style type="text/css">
+	td {
+		text-align: center;
+		font-size: 20px;
+	}
+	th {
+		text-align: center;
+	}
+	td img{
+		width: 80px;
+	}
+	</style>
+</head>
+
+<body>
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+	    <div class="col-sm-12">
+	        <div class="ibox float-e-margins">
+	            <div class="ibox-title">
+	                <h5>用户列表</h5>
+	            </div>
+	            <div class="ibox-content">
+
+	                <table class="table table-bordered">
+	                    <thead>
+	                        <tr>
+	                            <th>头像</th>
+	                            <th>昵称</th>
+	                            <th>操作</th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                    {foreach data as $list}
+	                        <tr>
+	                            <td><img src="{$list.head}"></td>
+	                            <td>{$list.name}</td>
+	                            <td><a class="sign" uid="{$list.id}">{if condition="$list.type==0"}推送{else}禁用{/if}</a></td>
+	                        </tr>
+	                    {/foreach}
+	                    </tbody>
+	                </table>
+
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+
+
+
+<!-- 全局js -->
+<script src="__STATIC__/js/jquery.min.js?v=2.1.4"></script>
+<script src="__STATIC__/js/bootstrap.min.js?v=3.3.6"></script>
+<!-- Peity -->
+<script src="__STATIC__/js/plugins/peity/jquery.peity.min.js"></script>
+<!-- 自定义js -->
+<script  src="__STATIC__/bPage/b.page.js"></script>
+<script src="__STATIC__/js/content.js?v=1.0.0"></script>
+
+<script type="text/javascript">
+var flag = true
+var flag1 = true
+$(function(){
+	$(".sign").click(function(){
+		if (flag) {
+			if($(this).html()=='禁用'){
+				$(this).html("推送")
+				var type = 0
+			}else{
+				$(this).html("禁用")
+				var type = 1
+			}
+			var url = "{:url('admin/index/sendman')}"
+			var id = $(this).attr('uid')
+			$.post(url,{id:id,type:type},function(data){
+				console.log(data)
+				flag = true
+			})
+		}
+	})
+})
+</script>
+
+
+</body>
+</html> 

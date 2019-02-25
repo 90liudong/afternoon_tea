@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>个人中心</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+
+	<style type="text/css">
+		html,body{
+			margin: 0;
+			padding:0;
+			}
+		.line1{
+			margin-top: 4%;	
+		}
+		
+		.line1-right{
+			float: left;
+			margin-top: 2%;
+			margin-left: 2%;
+		}
+		.line1-left{
+			width: 73px;
+			height: 73px;
+			float: left;
+			margin:0 3%;
+		}
+		.mfont{
+			font-size: 14px;
+		}
+
+
+
+
+	</style>
+</head>
+<body>
+	<div class="line1">
+			<img src="{$user.img}"  class="line1-left">
+		<div class="line1-right">
+			<span class="mfont">{$user.name}</span>
+		</div>
+		<div style="clear: both"></div>	
+	</div>
+
+	<div class="line1" onclick="window.location.href='{:url('index/myorder/index')}'">
+			<img src="__STATIC__/img/t/yhq.png"  style="width: 50px;height: 50px;float: left;
+			margin:0 3%;">
+		<div class="line1-right">
+			<span class="mfont">我的订单</span>
+		</div>
+		<div style="clear: both"></div>	
+	</div>
+
+	<div class="line1" onclick="window.location.href='{:url('index/bargin/yhq')}'">
+			<img src="__STATIC__/img/t/order.png"  style="width: 50px;height: 50px;float: left;
+			margin:0 3%;">
+		<div class="line1-right" onclick="window.location.href='{:url('index/people/coupon')}'"}>
+			<span class="mfont">优惠券</span>
+		</div>
+		<div style="clear: both"></div>	
+	</div>
+</body>
+</html>

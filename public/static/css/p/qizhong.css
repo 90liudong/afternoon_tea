@@ -1,0 +1,255 @@
+	html,body{
+	padding: 0;
+	margin: 0;
+}
+.ab{
+	text-decoration:none;
+}
+.yihang{
+	padding-top:10px;
+	position: relative;
+}
+.yihang-center{
+	border: 2px solid white;
+	background: transparent;
+	color: white;
+	font-weight: bold;
+	font-size: 12px;
+	padding: 1px 4px;
+}
+.yihang-left{
+	outline: 0;
+	color: gray;
+	width: 56%;
+	margin: 0px 4%;
+	height: 28px;
+	border: 0;
+	padding-left: 20px;
+	border-radius: 15px;
+
+}
+.fa-search{
+	position: absolute;
+    bottom: 8px;
+    left: 42px;
+    color: #bababa;
+}
+
+
+.yihang-right{
+	vertical-align: middle;
+	height: 24px;
+	margin-left: 1%;
+	float: right;
+	margin-right: 10px;
+	margin-top: 3px;
+}
+.erhang{
+    margin-top: 8px;
+    padding-bottom: 9px;
+}
+.erhang-who{
+    float: left;
+}
+.erhang-left img{
+    float: left;
+    width: 50px;
+    margin: 0 2%
+}
+.erhang-right{
+    float: right;
+    text-align: center;
+    margin-right: 4%;
+    text-decoration: none;
+}
+
+.white-line{
+	width: 95%;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-top: 7%;
+    margin: 0 auto;
+}
+.sanhang{
+	margin-top: 10px;
+    padding: 2px;
+	font-size: 14px;
+
+}
+.sanhang-left{
+	float: left;
+}
+.sanhang-center{
+	float: left;
+	padding-left: 2%;
+	color: white;
+}
+.sanhang-right{
+	float: right;
+	color: white;
+}
+.zong{
+	background-color: #846429;
+}
+.sihang{
+	width: 100%;
+    padding: 2% 0;
+    font-size: 16px;
+    border-bottom: 1px solid rgb(228,228,228);
+    color: #555;
+}
+.sihang-left{
+	float: left;
+	width: 33.33%;
+	text-align: center;
+	color: orange;
+	position: relative;
+}
+.sihang-center{
+	float: left;
+	width: 33.33%;
+	text-align: center;
+}
+.sihang-right{
+	float: left;
+	width: 33.33%;
+	text-align: center;
+}
+.real-right{
+	color: #333;
+	width: 74%;
+	float: right;
+}
+.orange-line{
+	width: 18%;
+    border-bottom: 1px solid orange;
+    position: absolute;
+    top: 133%;
+    right: 41%;
+}
+.left{
+	width: 24%;
+	background-color: rgb(244,244,244);	
+	float: left;
+	color: #333;
+	font-size: 13px;
+}
+.left div{
+	cursor: pointer;
+	padding: 13%; 
+	border-bottom: 1px solid rgb(228,228,228);
+}
+.active{
+	
+	font-weight: bolder;
+	text-align: center;
+	background-color: white;	
+}
+.right{
+	float: left;
+	margin-top: 5%;
+	width: 100%;
+}
+.imgs{
+	float: left;
+	
+	width: 22%;
+	padding: 0 2%;
+}
+.imgs img{
+	width: 107%;
+	height: 63px;
+}
+.data{
+	float: left;
+	width: 74%;
+}
+.data1{
+	font-weight: bolder;
+	font-size: 16px;
+}
+.data2{
+	margin:4px 0;
+	font-size: 12px;
+	color: gray;
+}
+.data3{
+	font-size: 19px;
+    width: 100%;
+    height: 28px;
+    position: relative;
+}
+.d3-right{
+	float: right;
+	margin-right: 10px;
+}
+.plus button{
+	padding: 0;
+    border: 0;
+    font-size: 21px;
+    color: orange;
+    outline: 0;
+    margin: 0;
+   	background-color: white;
+}
+.del button{
+	padding: 0;
+    border: 0;
+    font-size: 21px;
+    color: black;
+    outline: 0;
+    margin: 0;
+    background-color: white;
+}
+.foot{
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	background: rgba(19,14,14,0.68);
+	color: white;
+}
+.foot>img{
+	width: 16%;
+	float: left;
+	border-radius: 50px;
+	margin-top: -17px;
+	margin-left: 7px;
+}
+.foot>.foot-mid{
+	float: left;
+	margin-left: 10px;
+}
+.foot>.foot-mid>.foot-top{
+	margin-top: 5px;
+}
+.foot>.foot-mid>.foot-top span:first-child{
+	font-size: 23px;
+	margin-right: 5px;
+}
+.foot>.foot-mid>.foot-bottom{
+	color: gray;
+	margin-top: 2px;
+	font-size: 12px;
+}
+.foot>a{
+	float: right;
+	border: 0;
+	background:rgb(255,186,12);
+	font-size: 16px;
+	font-weight: bold;
+	color: #222;
+	padding: 20px 30px; 
+	text-decoration: none;	
+}
+.right .num{
+	display: none;
+	margin: 0 5px;
+}
+.right .del{
+	color: gray;
+	display: none;
+}
+.right .plus{
+	color: orange;
+	display: inline-block;
+}

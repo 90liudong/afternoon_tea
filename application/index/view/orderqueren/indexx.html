@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>订单确认</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+	<link href="__STATIC__/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+	<script type="text/javascript" src="__STATIC__/js/jquery-3.2.1.min.js"></script>
+
+	<style type="text/css">
+	html,body{
+		padding: 0px;
+		margin:0px;
+		background-color: rgb(242,242,242);
+	}
+	
+	.box{
+		background-color: white;
+		margin: 10px 8px;
+	}
+	.boxx{
+		padding: 3% 5%;
+	}
+	.boxx-cen{	
+		color: gray;
+		margin-left: 8%;
+	}
+	.boxx-rig{	
+		color: gray;
+		float: right;	
+	}
+	
+	.white-line{
+		width: 97%;
+	    background-color: rgb(242,242,242);
+	    height: 1px;
+	    float: right;
+	}
+	.dashed-line{
+	    border:1px dashed #000; 
+	}
+	.boxxx{
+		padding: 1% 5%;
+		
+
+	}
+	.boxxx span{
+		font-size: 12px;
+		color: gray;
+	}
+	.left{
+		float: left;
+		width: 22%;
+	}
+	.right{
+		font-size: 14px;
+	    color: gray;
+	    width: 76%;
+	    float: right;
+	    margin-left: 2%;
+	}
+	.rig{
+		font-size: 14px;
+	    color: gray;
+	    width: 76%;
+	    
+	    margin-left: 2%;
+	}
+	.bb{
+		padding: 5% 5%;
+		position: relative;
+	}
+	.bb-cen{
+		margin-left: 2%;
+	}
+	.bb-rig{
+		float: right;
+	}
+	.imge{
+		width: 6%;
+    	vertical-align: middle;
+	}
+	.foot{
+		background-color: white;
+	    position: fixed;
+	    width: 100%;
+	    height: 35px;
+	    bottom: 0px;
+	    padding: 3% 0;
+	    box-shadow: 0 2px 3px 2px #2f2d2d;
+	}
+	.foot button{
+	    float: right;
+	    padding: 2.5% 7%;
+	    font-size: 14px;
+	    margin-right: 4%;
+	    outline: none;
+	    border: 0px;
+	    background-color: rgb(153,153,153);
+	    border-radius: 5px;
+	}
+		.foot>.foot-mid{
+			float: left;
+			margin-left: 20px;
+		}
+		.foot>.foot-mid>.foot-top{
+			margin-top: -8px;
+		}
+		.foot>.foot-mid>.foot-top span:first-child{
+			font-size: 20px;
+			margin-right: 5px;
+		}
+		.foot>.foot-mid>.foot-bottom{
+			color: #f3eded;
+		    margin-top: 2px;
+		    background: rgb(153,153,153);
+		    width: 84%;
+		    font-size: 11px;
+		    text-align: center;
+		}
+		#price{
+			color: rgb(204,0,51);
+		}
+		.cc{
+			font-size: 14px;
+			color:gray;
+			margin-left:2%;
+		}
+		.add{
+			display: inline-block;
+		    vertical-align: middle;
+		    margin-left: 8%;
+		    
+		}
+		.add-cen{
+			padding: 2% 0;
+		}
+	
+	</style>
+
+</head>
+<body>
+	
+	<div class="box">
+		
+		
+		<div class="bb">
+			<img src="__STATIC__/img/000.png" class="imge" style="position: absolute;top: 28%;">
+			<div class="add">
+				<div  class="add-cen">员村二横路11号大院 79号楼607</div>
+				<div  class="add-cen" >用户姓名  13800000000</div>
+			</div>
+			<span  class="bb-rig" style="position: absolute;top: 40%;right: 5%;">&gt;</span>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="white-line"></div>
+		<div style="clear: both;"></div>
+
+		<div class="boxx">
+			<img src="__STATIC__/img/001.png" class="imge">
+			<span  class="bb-cen">送达时间</span>
+			<span  class="bb-cen" style="font-size: 14px;" >7月26日  09:00-09:30</span>
+			<span  class="boxx-rig">&gt;</span>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="white-line"></div>
+		<div style="clear: both;"></div>
+		
+	</div>
+
+	<div class="box">
+		<div class="boxx">
+			<span>商品1</span>
+			<span  class="boxx-cen">1份</span>
+			<span  class="boxx-rig">￥28</span>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="white-line"></div>
+		<div style="clear: both;"></div>
+
+		<div class="boxx">
+			<span>商品2</span>
+			<span  class="boxx-cen">1份</span>
+			<span  class="boxx-rig">￥28</span>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="white-line"></div>
+		<div style="clear: both;"></div>
+
+		<div class="boxx">
+			<span>配送费</span>
+			<span  class="boxx-rig">￥5</span>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="dashed-line"></div>
+		<div style="clear: both;"></div>
+
+		<div class="boxx">
+			<span>优惠</span>
+			<span  style="float: right;">&gt;</span>
+			<span   style=" float: right; margin-right: 4%; color: green;">减￥10</span>
+			
+			
+			<div style="clear: both;"></div>
+		</div>
+		<div class="dashed-line"></div>
+		<div style="clear: both;"></div>
+
+		<div class="boxx">
+			<span>总计</span>
+			<span  class="boxx-rig" style="color: rgb(204,0,51);">￥56</span>
+			<div style="clear: both;"></div>
+		</div>
+	</div>
+
+	<div class="box">
+		
+		
+		<div class="boxx">
+			<span class="left">备注</span>
+			<span  style="color: gray; font-size: 14px;">口味和其他特殊要求在这里说明</span>
+			<span  style="float: right;">&gt;</span>
+			
+			<div style="clear: both;"></div>
+		</div>
+		<div class="white-line"></div>
+		<div style="clear: both;"></div>
+	</div>
+	<div style="height: 50px;"></div>
+	
+	<div class="foot">
+		<div class="foot-mid">
+				<div class="foot-top">
+					<span id="price">¥ 56</span>
+				</div>
+				<div class="foot-bottom">2杯</div>
+		</div>
+		<span class="cc">已优惠10元</span>
+		
+		<button onclick="return pay()">微信支付</button>
+		
+		<div style="clear: both;"></div>
+	</div>
+
+	
+
+	
+
+</body>
+</html>

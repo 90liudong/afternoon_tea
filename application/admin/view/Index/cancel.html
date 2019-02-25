@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>取消</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+	<meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico"> 
+    <link href="__STATIC__/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/css/xwc.css">
+	<link href="__STATIC__/css/jquery.bxslider.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="__STATIC__/bPage/b.page.bootstrap3.css" type="text/css">
+    <link href="__STATIC__/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">	
+    <link href="__STATIC__/css/animate.css" rel="stylesheet">
+    <link href="__STATIC__/css/style.css?v=4.1.0" rel="stylesheet">
+
+	<style type="text/css">
+	.ibox{
+        width: 95%;
+        margin: 0 auto;
+        margin-top: 30px;
+    }
+    img{
+        height: 40px;
+        width: 40px;
+    }
+    #page1{
+        padding-right: 2.5%;
+        margin-top: 20px; 
+    }
+    </style>
+
+</head>
+<body>
+	<div class="head">
+		<div style="margin-left: 5%;">
+			<a href="{:url('admin/index/order')}">待支付</a>
+			<a href="{:url('admin/index/make')}">制作</a>
+			<a href="{:url('admin/index/give')}">配送</a>
+			<a href="{:url('admin/index/com')}">已完成</a>
+			<a href="{:url('admin/index/cancel')}" style="background-color: red;">已取消</a>
+		</div>
+		<a class="dianji" onclick="showdiv()" style="margin-left: 42%;cursor: pointer;">展开查询</a>
+		<div style="clear: both;"></div>
+	</div>
+
+	<div>
+        <form class="mform" action="{:url('admin/index/cancel')}" method="post">
+        <div id="show" class="box" style="display: none;">
+        <div class="box-1">
+            <span style="font-size: 13px; margin-left: 10%;">订单号</span>
+            <input class="inp" type="text" name="ordernum" style="width: 60%;">
+        </div>
+
+        <div class="box-2">
+            <span style="font-size: 13px; margin-left: 10%;">联系人</span>
+            <input class="inp" type="text" name="name" style="width: 70%;">
+        </div>
+
+        <div class="box-3">
+            <span style="font-size: 13px;margin-left: 10%;">收货手机</span>
+            <input class="inp" type="text" name="tel" style="width: 60%;">
+        </div>
+        
+        <div class="box-4">
+            <span style="font-size: 13px;margin-left: 10%;">下单时间</span>
+            <input class="inp" type="date" name="ordertime" style="width: 50%;">
+        </div>
+
+        <div class="box-5">
+            <span style="font-size: 13px;margin-left: 10%;">预约时间</span>
+            <input class="inp" type="date" name="sendtime" style="width: 60%;">
+        </div>
+
+        <div class="box-6">
+            <span style="font-size: 13px;margin-left: 14%;">用户ID</span>
+            <input class="inp" type="text" name="userid" style="width: 62%;">
+        </div>
+
+        <div class="box-7">
+            <span style="font-size: 13px;">是否使用优惠券</span>
+            <select style="width: 30%;height: 25px;" name="type">
+            <option value="0">全部</option>
+            <option value="1">是</option>
+            <option value="2">否</option>
+            </select>
+        </div>
+        <div class="box-8">
+            <button type="submit" style="text-decoration: none;border: 1px solid red;padding: 5px 14px;margin: 0 20px;color: #151313;">查询</button>
+            <button class="reset" type="reset" style="text-decoration: none;border: 1px solid red;padding: 5px 14px;color: #151313;">重置</button>
+        </div>
+        <div style="clear: both;"></div>
+        </form>
+    </div> 
+
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>基本</h5>
+                    </div>
+                    <div class="ibox-content">
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>订单号/商品/单价/数量</th>
+                                    <th>用户头像</th>
+                                    <th>用户昵称</th>
+                                    <th>下单时间</th>
+                                    <th>预约时间</th>
+                                    <th>地址</th>
+                                    <th>联系人/联系电话</th>
+                                    <th>优惠</th>
+                                    <th>实付金额</th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {foreach $orders as $orders}
+                                <tr>
+                                    <td>
+                                    {$orders.ordernum}<br>
+                                    {foreach $orders.ordergoods as $og} 
+                                    <div class="gimage" style="float: left;margin-top: 10px"><img src="__STATIC__/goodimage/{$og.img}" style="float: left;margin-right: 10px"><span>{$og.name}</span style="float: right;"><div style="clear: both;"></div></div>
+                                    <div class="sname" style="float: right;margin-top: 10px">&yen;{$og.money}<br><br>{$og.num}</div>
+                                    <div style="clear: both;"></div>
+                                    {/foreach}
+                                    </td>
+                                    <td><img src="{$orders.img}"></td>
+                                    <td>{$orders.name}</td>
+                                    <td style="width: 90px">{:date('Y-m-d H:i:s',$orders.ordertime)}</td>
+                                    <td style="width: 90px">{$orders.sendtime}</td>
+                                    <td>{$orders.address}</td>
+                                    <td>{$orders.aname}/{$orders.tel}</td>
+                                    <td>{$orders.did}</td>
+                                    <td>{$orders.omoney}</td>
+                                </tr>
+                            {/foreach}
+                            </tbody>
+                        </table>
+
+                    </div>
+            </div>
+    {if condition="$type==1"}
+             <div id="page1">
+                <div class="pagination bPage bPageRight">
+                 <ul>
+                    <li id="bPageList" class="disabled bPageList"><a>每页 <select id="bPageDropList"><option value="5">5</option><option value="10">10</option><option value="15">15</option><option value="20">20</option></select> 条</a></li>
+                    <li id="bPageInfo" class="disabled bPageInfo"><a>当前显示第{$page}/{$maxPage}页（共{$size}条记录）</a></li>
+
+                    <li id="bPageFirstPage" class="bPageControlButton disabled"><a href="{$href}?page=1&each={$each}">首页</a></li>
+
+                    <li id="bPagePreviousPage" class="bPageControlButton disabled"><a href="{$href}?page={$page-1}&each={$each}">«</a></li>
+
+                    {foreach $pages as $p}
+                    <li><a href="{$href}?page={$p}&each={$each}">{$p}</a></li>
+                    {/foreach}
+                     
+                    <li id="bPageNextPage" class="bPageControlButton"><a href="{$href}?page={$page+1}&each={$each}">»</a></li>
+                    <li id="bPageLastPage" class="bPageControlButton"><a href="{$href}?page={$maxPage}&each={$each}">尾页</a></li>
+                 </ul>
+                </div>
+            </div>
+    {/if}
+
+
+
+
+<script src="__STATIC__/js/jquery.min.js?v=2.1.4"></script>
+<script  src="__STATIC__/bPage/b.page.js"></script>
+<script type="text/javascript">
+$(function(){
+    {if condition="$type==1"}
+    $("#bPageDropList").val("{$each}")
+    $('.cardno-buttom').click(function(){
+       var cardno = $(this).attr('cardno');
+       $('.cardno-set').val(cardno)
+    })
+    $('#bPageDropList').change(function(){
+        var each = $('#bPageDropList option:selected').text();
+        var url = "{$href}?"
+        var page ="{$page}"
+        window.location.href=url+"page="+page+"&each="+each
+    })
+    {/if}
+})
+function showdiv(){
+if(document.getElementById('show').style.display=='none'){
+ 
+document.getElementById('show').style.display='block';
+ 
+}else{
+ 
+document.getElementById('show').style.display='none';
+ 
+}
+ 
+}
+
+
+</script>
+
+
+
+</body>
+</html> 

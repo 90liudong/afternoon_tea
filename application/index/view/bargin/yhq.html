@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>优惠券</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+	<meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="__STATIC__/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__STATIC__/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__STATIC__/css/main.css" rel="stylesheet">
+    <style type="text/css">
+    body,html{
+    	padding:0px;
+    	margin:0px;
+    	width: 100%;
+    	background-color: rgb(242,242,242);
+    }
+    .box{
+    	background-color: rgb(175,43,46);
+    	margin: 0 4%;
+    	margin-top: 3%;
+
+    }
+    .left{
+		float: left;
+		width: 25%;
+    }
+    .left img{
+    	width: 70px;
+    	height: 70px;
+	    border-radius: 45px;
+	    padding: 12% 12%;
+	    	
+
+    }
+    .right{
+		float: left;
+	    width: 67%;
+	    padding-left: 8%;
+	    padding-top: 3%;
+	    color: #f3e9e9;
+
+    }
+    .right span{
+    	display: block;
+    	padding: 1% 0;
+
+    }
+    .bbox{
+    	background-color: white;
+    	margin: 0 4%;
+    	padding-bottom: 3%;
+    }
+    .bbox span{
+		font-size: 13px;
+		padding-left: 2%;
+    }
+    .foot{
+
+	    width: 100%;
+	    background-color: rgb(175,43,46);
+	    position: fixed;
+	    bottom: 0px;
+	    color: white;
+	    text-align: center;
+	    padding: 10px 0;
+	}
+	#button1{
+		background-color: rgb(153,153,153);
+	}
+    </style>
+</head>
+<body>
+	<div id="mask" class="mask">
+		<i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="color: rgba(250,250,250,1);"></i>
+		<span class="sr-only">Loading...</span>
+	</div> 
+	<div class="box">
+		<div class="left">
+			<img src="__STATIC__/img/06.png">
+		</div>
+
+		<div class="right">
+			<span>{$cou.name}</span>
+			<span style="font-size: 12px;">{$cou.content}</span>
+		</div>
+		<div style="clear: both;"></div>
+
+	</div>
+	<div class="bbox">
+		{if condition="$cou.timetype==2"}
+		<span>有效日期：{$cou.open}至{$cou.close}</span>
+		{else}
+		<span>有效日期：领取后{$cou.open}天生效，有效期{$cou.close}天</span>
+		{/if}
+	</div>
+
+
+	<div class="foot" id="button" cid="{$cou.id}">领取</div>
+
+
+</body>
+<script type="text/javascript" src="__STATIC__/js/jquery-1.9.1.min.js"></script>
+<pre class="html" name="code" style="display: none;">
+<script type="text/javascript">     
+    function showMask(){     
+        $("#mask").css("height",$(document).height());     
+        $("#mask").css("width",$(document).width());     
+        $("#mask").show();     
+    }  
+    function hideMask(){     
+        $("#mask").hide();     
+    }  
+    $(function(){
+    	var status = {$cou.status};
+		var number = {$cou.number};
+		if (status) {
+			$('#button').attr('id','button1')
+			$('#button1').html('已经过了有效使用期')
+		}
+		if (!number) {
+			$('#button').attr('id','button1')
+			$('#button1').html('已经抢完了')
+		}
+		$("#button").click(function(){
+		    showMask()
+		    var cid  = $(this).attr('cid')
+		    var url = "{:url('index/bargin/yhq')}"
+		    $.post(url,{id:cid},function(data){
+		    	hideMask()
+		 		alert(data)
+		    })
+		})
+    })
+</script>
+</html>

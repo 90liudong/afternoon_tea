@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>我的订单</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+	<style type="text/css">
+	html,body{
+		padding: 0px;
+		margin:0px;
+		background-color: rgb(242,242,242);
+	}
+	.head{
+		padding: 10px 10px;
+		background-color: white;
+		text-align: center;
+		margin: 10px 8px;
+		border:1px solid #AF2B2E;
+		}
+	.box{
+		background-color: white;
+		margin: 10px 8px;
+	}
+	.boxx{
+		padding: 3% 5%;
+	}
+	.boxx-cen{	
+		color: gray;
+		margin-left: 8%;
+	}
+	.boxx-rig{	
+		color: gray;
+		float: right;	
+	}
+	
+	.white-line{
+		width: 97%;
+	    background-color: rgb(242,242,242);
+	    height: 1px;
+	    float: right;
+	}
+	.dashed-line{
+	    border:1px dashed #000; 
+	}
+	.boxxx{
+		padding: 1% 5%;
+		
+
+	}
+	.boxxx span{
+		font-size: 12px;
+		color: gray;
+	}
+	.left{
+		float: left;
+		width: 22%;
+	}
+	.right{
+		font-size: 14px;
+	    color: gray;
+	    width: 76%;
+	    float: right;
+	    margin-left: 2%;
+	}
+	.rig{
+		font-size: 14px;
+	    color: gray;
+	    width: 76%;
+	    
+	    margin-left: 2%;
+	}
+	
+	</style>
+
+</head>
+<body>
+	<div class="head" onclick="return fanghui()">配送中</div>
+	<div class="box" style="margin-top:15px;">
+		{foreach $list.good as $good}
+		<div class="boxx">
+			<span>{$good.name}</span>
+			<span  class="boxx-cen">{$good.num}份</span>
+			<span  class="boxx-rig">￥{$good.money}</span>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="white-line"></div>
+		<div style="clear: both;"></div>
+		{/foreach}
+
+		<div class="boxx">
+			<span>配送费</span>
+			<span  class="boxx-rig">￥{$list.sendmoney}</span>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="dashed-line"></div>
+		<div style="clear: both;"></div>
+
+		<div class="boxx">
+			<span>优惠</span>
+			<span  class="boxx-rig" style="color: rgb(255,204,41);">{$list.cou}</span>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="dashed-line"></div>
+		<div style="clear: both;"></div>
+
+		<div class="boxx">
+			<span>总计</span>
+		</div>
+	</div>
+
+	<div class="box">
+		
+		<div class="boxxx">
+			<span>收取信息</span>
+		</div>
+		<div class="white-line"></div>
+		<div style="clear: both;"></div>
+
+		<div class="boxx">
+			<span class="left">联系人</span>
+			<span  class="rig" >{$list.add.name}</span>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="white-line"></div>
+		<div style="clear: both;"></div>
+
+		<div class="boxx">
+			<span class="left">手机号</span>
+			<span class="rig" >{$list.add.tel}</span>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="white-line"></div>
+		<div style="clear: both;"></div>
+
+		<div class="boxx">
+			<span class="left">配送地址</span>
+			<span class="right">{$list.add.address},{$list.add.doornumber}</span>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="white-line"></div>
+		<div style="clear: both;"></div>
+
+		<div class="boxx">
+			<span class="left">送达时间</span>
+			<span  class="right">{$list.sendtime}</span>
+			
+			<div style="clear: both;"></div>
+		</div>
+		<div class="white-line"></div>
+		<div style="clear: both;"></div>
+
+		<div class="boxx">
+			<span class="left">备注</span>
+			<span  class="right">{$list.extra}</span>
+			
+			<div style="clear: both;"></div>
+		</div>
+		<div class="white-line"></div>
+		<div style="clear: both;"></div>
+	</div>
+	 
+	
+
+	<script src="__STATIC__/js/jquery.min.js?v=2.1.4"></script>
+	<script type="text/javascript">
+		function fanghui(){
+			window.location.href = "{:url('index/news/arrive')}";
+		}
+		// $(function(){
+  //       	var b=0; 
+		// 	if (id!=0) {
+		// 		updatenew();
+		// 		function updatenew(){
+		//             var url = "{:url('index/news/updatenew')}"
+		//             console.log(id)
+		//             $.post(url,{static:2}, function(data){
+		//             console.log(data)
+		//             	for (var a = 0; a < id.length; a++) {
+	 //                        for (var i = 0; i < data.length; i++) {
+	 //                            if (data[i]['id']==id[a]['id']) {
+	 //                                b++
+	 //                            }
+	 //                        }
+	 //                        if (b==0) {
+		// 						window.location.href = "{:url('index/news/arrive')}";
+	 //                        }
+	 //                        b=0
+	 //                    }
+		//             });
+		//             setTimeout(updatenew, 5000);
+		// 		}
+  //       	}
+		// })
+		</script>
+	
+
+	
+
+</body>
+</html>

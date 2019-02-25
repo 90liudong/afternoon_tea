@@ -1,0 +1,166 @@
+html,body{
+	margin: 0;
+	padding: 0;
+}
+.head{
+	text-align: center;
+    border-bottom: 1px solid #f1eded;
+    padding-bottom: 5px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding-top: 5px;
+    margin-left: -6%;
+
+
+}
+.head img{
+	width: 36px;
+	vertical-align: middle;
+
+}
+.head input{
+	width: 100%;
+    height: 24px;
+    padding-left: 32px;
+    border-radius: 14px;
+    border: 0;
+    background-color: #f1efef;
+    outline: 0;
+}
+.line2{
+	text-align: center;
+    font-weight: bold;
+    margin: 10px 0;
+    font-size: 20px;
+    margin-top: 50px;
+
+}
+.line3{
+	border-top: 1px solid #e4dede;
+    padding: 10px 0;
+    border-bottom: 1px solid #e4dede;
+}
+.line3 span{
+	width: 25%;
+	float: left;
+	text-align: center;
+	color: gray;
+}
+.line3 span:first-child{
+	color: black;
+}
+.line4{
+	margin-top: 12px;
+	border-bottom: 1px solid #e4dede;
+    padding-bottom: 15px;
+
+}
+.line4 .line4-1 .left{
+	width: 28%;
+	float: left; 
+	margin-left: 2%;
+
+}
+.line4 .line4-1 .right.{
+	width: 66%;
+	float: left; 
+	padding: 0 2%;
+}
+
+.line4 .line4-1 .right .title{
+	font-size: 18px;
+    font-weight: bold;
+    margin-left: 32%;
+
+
+}
+.data{
+	font-size: 12px;
+    color: gray;
+    float: left;
+    width: 66%;
+    margin-left: 2%;
+
+}
+.data-left{
+	float: left;
+    margin-left: 2%;
+	
+
+}
+.data-right{
+	float: right;
+}
+.data2{
+	font-size: 12px;
+    color: gray;
+    margin-left: 33%;
+
+}
+.line4 .line4-2{
+	margin-left: 32%;
+    width: 66%;
+    font-size: 12%;
+    color: gray;
+    margin-top: 10px;
+
+}
+.left-a{
+
+
+}
+.abc img{
+	width: 28%;
+    margin-top: 15px;
+    margin-left: 2%;
+
+}
+.line5{
+	border-top: 1px solid #ccc;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white
+
+}
+.line5 a{
+	width: 33.33%;
+    float: left;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 12px;
+}
+.line4-2 .l{
+	margin-top: -9px;
+}
+.line4-2 .p{
+	margin-top: -9px;
+}
+.line5 i{
+	font-size: 20px;
+}
+.data-left .fa-star{
+	color: orange;
+
+}
+.line4-2 img{
+	width: 18px;
+    vertical-align: bottom;
+}
+.head .fa-search{
+	position: absolute;
+    left: 13px;
+    bottom: 5px;
+    color: gray;
+}
+.search{
+    display: inline-block;
+    width: 68%;
+    position: relative
+}

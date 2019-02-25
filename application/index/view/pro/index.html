@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>春夏秋冬下午茶</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+	<link href="__STATIC__/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+	<script type="text/javascript" src="__STATIC__/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=oVNnc5pGCCUbuDTICeA19CdS2Nnl16M2&s=1"></script> 
+    <link href="__STATIC__/css/main.css" rel="stylesheet">
+	<style type="text/css">
+		html,body{
+			margin: 0;
+			padding:0;
+			height: 100%;
+			}
+		#parent{
+            overflow: hidden;
+        }
+		.left{
+			background-color: #F2F2F2;
+			width: 22%;
+			height: 100%;
+			float: left;
+			position: fixed;
+			/*overflow-y: scroll;*/
+           /*overflow: hidden;*/
+            /*border: 1px solid #ddd;*/
+
+
+		}
+		
+		.bb{
+			color: #333333;
+			width: 100%;
+    		padding: 23% 0;
+		    background-color: #F2F2F2;
+		    outline: none;
+		    width: 86%;
+		    margin-left: 7%;
+		    border-top: 0px;
+		    border-right: 0px;
+		    border-left: 0px;
+		    border-bottom: hidden;
+
+		}
+		.plus{
+			float: right;
+		}
+		.right{
+			width: 70%;
+    		/*margin: 2% 4%;*/
+    		float: left;
+    		margin-left: 26%;
+    		margin-bottom: 450px;
+		}
+		.head-box{
+			padding: 4% 2%;
+		}
+		.imgs{
+			height: 70px;
+    		width: 100%;
+		}
+		
+		.login-box{
+			float: left;
+		    width: 33.33%;
+		    margin-top: 4%;
+		    text-align: center;
+		}
+		.login-box img{	 
+	        width: 88%;
+		}
+		/*.login-box span{
+			font-size: 15px;
+			display: block;
+			text-align: center;
+
+		}*/
+		.shop{
+			font-size: 15px;
+		    display: block;
+		    text-align: center;
+		}
+		.mfont{
+			font-size: 15px;
+		    display: block;
+		    text-align: center;
+		    color: #AF2B2E;
+		    margin-top: 3%;
+		    position: relative;
+		}
+		.mfont1{
+			text-decoration: line-through;
+    		text-decoration-color: #999999;
+		}
+		.login-container{
+		    text-align: center;
+		    width: 100%;
+		    margin: 0 auto;
+		    margin-top: 4%;
+		}
+		.line2{
+			margin-top: 8%;
+		}
+		.mfont{
+			color: #AF2B2E;
+			margin-top: 3%;
+			position: relative;
+		}
+		.white-line{
+			width: 100%;
+    		background-color: #999999;
+    		height: 1px;
+    		margin-top: 20px;
+		}
+
+		.foot{
+			width: 100%;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			background:rgb(255,255,255);
+			color: #AF2B2E;
+			box-shadow: 0 2px 4px 2px black;
+		}
+		.foot>img{
+			width: 16%;
+			float: left;
+			margin-left: 7px;
+		}
+		.foot>.foot-mid{
+			float: left;
+			margin-left: 12px;
+		}
+		.foot>.foot-mid>.foot-top{
+			margin-top: 5px;
+		}
+		.foot>.foot-mid>.foot-top span{
+			font-size: 23px;
+			/*margin-right: 5px;*/
+		}
+
+		.foot>.foot-mid>.foot-bottom{
+			color: #f3eded;
+    		margin-top: 2px;
+    		background: #FF9900;
+    		width: 76%;
+    		font-size: 11px;
+    		text-align: center;
+		}
+		.foot>button{
+			float: right;
+		    border: 0;
+		    background: #AF2B2E;
+		    font-size: 16px;
+		    color: #decdcd;
+		    padding: 10px 40px;
+		    margin: 10px 15px;
+		    border-radius: 3px;
+		    outline: none;	
+		    height: 11%;
+		}
+		.food{
+			width: 100%;
+			position: fixed;
+			left: 0;
+			background:rgb(255,255,255);
+			overflow-y: scroll;
+            padding-right: 20px; /* 滚动条的宽度 */
+            border: 1px solid #ddd;
+            max-height: 23%;
+            display: none;
+		}
+		.food-box{
+			font-size: 18px;
+			margin-left:3%;
+			padding:3% 0;
+
+		}
+		.data3{
+			text-align: center;
+			padding-right: 5%;
+		}
+		.data3 span{
+			/*padding: 0 5%;*/
+			margin-left: 5%;
+		}
+		.line{
+			width: 97%;
+		    background-color: #999999;
+		    height: 1px;
+		    float: right;
+  
+		}
+		.s0{
+			color: #AF2B2E;
+		}
+		.s1{
+			color: #AF2B2E;
+		}
+		.s2{
+			font-size: 12px;
+			color: #999999;
+		}
+		.s3{
+			font-size: 12px;
+			color: #999999;
+		}
+		.s4{
+			float: right; 
+			color: rgb(255,153,0);
+			margin-right: 4%;
+		}
+		.top_money{
+			text-decoration: line-through;
+    		text-decoration-color: #999999;
+		}
+		.white{
+			width: 17%;
+		    background-color: #999999;
+		    height: 1px;
+		    position: absolute;
+		    right: 27%;
+
+    		
+		}
+		.show{
+			padding: 10px 5px;
+			background-color: #d7d5d5;
+			color: white;
+			font-size: 0.96rem;
+		}
+	</style>
+</head>
+<body>
+<div class="show" style="display: none;">目前位置还不能提供服务</div>
+<div id="parent">
+	<div class="left">
+		
+	</div>
+</div>
+	<div id="mask" class="mask">
+		<i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="color: rgba(250,250,250,1);"></i>
+		<span class="sr-only">Loading...</span>
+	</div> 
+	<div class="right">
+		<a id="{$godid}">
+		<div class="head-box" index="{$goodss.id}" type="{$goodss.type}" number="{$goodss.number}" >
+			<a id="c0">
+			<img src="__STATIC__/goodimage/{$goodss.img}"  class="imgs">
+			</a>
+			<span class="n">{$goodss.name}</span>
+			<div>
+				<span  class="s0">&yen;</span><span  class="s1">{$goodss.money}</span>
+				{if condition="$goodss.newmoney eq 0 "}
+					
+					<span  class="s2" style="display: none;">&yen;</span><span class="s3" style="display: none;">{$goodss.newmoney}</span>
+					
+				{else /}
+				<span class="top_money">
+					<span  class="s2">&yen;</span><span class="s3">{$goodss.newmoney}</span>
+				</span>
+					
+				{/if}
+				
+				<span  class="s4">剩余{$goodss.number}份</span>		
+			</div>
+		</div>
+		</a>
+		{foreach $goods as $good}
+		<div class="fbox">
+			<div class="line2">
+				<a id="{$good.id}"><span style="color: #999999; font-size: 14px;">{$good.name}</span></a>
+				<div class="login-container">
+			{foreach $good["goods"] as $item}
+					<div class="login-box" index="{$item.id}" type="{$item.type}" number="{$item.number}">
+					<img src="__STATIC__/goodimage/{$item.img}">   
+					<span>{$item.name}</span>
+					<span class="mfont">&yen; <a>{$item.money}</a> 
+					
+					{if condition="$item.newmoney eq 0 "}
+					
+					{else /}
+					<span class="mfont1">
+					<a class="s2">&yen;</a><a class="s3">{$item.newmoney}</a>
+					</span>
+	
+				{/if}
+					
+					</span>
+
+				    </div>
+			{/foreach}
+
+					<div style="clear: both;"></div>
+				</div>
+		
+			</div>
+			
+			<div class="white-line"></div>
+		</div>
+		{/foreach}
+
+	</div>
+
+		<div class="food" >
+			
+		</div>
+
+		
+	
+
+	<!-- <div style="height: 200px; clear: both;"></div> -->
+	<div class="foot">
+		<img src="__STATIC__/img/1.png">
+		<div class="foot-mid">
+			<div class="foot-top">
+				<span >&yen; </span>
+				<span class="price">0</span>
+			</div>
+			<div class="foot-bottom">
+				<span class="number">0</span> 
+				<span>杯</span>
+			</div> 
+		</div>
+		<button onclick="return xidang()" id="pay">下单</button>
+	</div>
+
+	
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/GeoUtils/1.2/src/GeoUtils_min.js"></script>
+	<script type="text/javascript">
+		wx.config({
+            debug: false,
+            appId: "{$signPackage.appId}",
+            timestamp: '{$signPackage.timestamp}',
+            nonceStr: '{$signPackage.nonceStr}',
+            signature: '{$signPackage.signature}',
+            jsApiList: [
+              // 所有要调用的 API 都要加到这个列表中
+              'getLocation',
+            ]
+        });
+		wx.ready(function () {
+            // 在这里调用 API
+            wx.getLocation({
+				type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+				success: function (res) {
+					var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+					var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+					var result = polygon(arr[0],arr[1])
+	        		if (!result) {
+	        			$('#pay').attr('disabled',disabled)
+	        			$('.show').show()
+	        			alert('超过了目前可配送范围')
+	        			return;
+	        		}
+				}
+			});
+        });
+        function polygon(lng,lat) {
+	    	var pts = [];
+		    var pt1 = new BMap.Point(113.396403,23.122308);
+	        var pt2 = new BMap.Point(113.392384,23.123531);
+	        var pt3 = new BMap.Point(113.371938,23.128284);
+	        var pt4 = new BMap.Point(113.372944,23.131075);
+	        var pt5 = new BMap.Point(113.374274,23.131973);
+	        var pt6 = new BMap.Point(113.374849,23.131973);
+	        var pt7 = new BMap.Point(113.374992,23.131474);
+	        var pt8 = new BMap.Point(113.376034,23.131474);
+	        var pt9 = new BMap.Point(113.376681,23.131042);
+	        var pt10 = new BMap.Point(113.377364,23.131175);
+	        var pt11 = new BMap.Point(113.377759,23.132803);
+	        var pt12 = new BMap.Point(113.378586,23.132737);
+	        var pt13 = new BMap.Point(113.37916,23.134664);
+	        var pt14 = new BMap.Point(113.385988,23.131773);
+	        var pt15 = new BMap.Point(113.398851,23.130876);
+	        var pt16 = new BMap.Point(113.396624,23.122235);
+	        pts.push(pt1);
+	        pts.push(pt2);
+	        pts.push(pt3);
+	        pts.push(pt4);
+	        pts.push(pt5);
+	        pts.push(pt6);
+	        pts.push(pt7);
+	        pts.push(pt8);
+	        pts.push(pt9);
+	        pts.push(pt10);
+	        pts.push(pt11);
+	        pts.push(pt12);
+	        pts.push(pt13);
+	        pts.push(pt14);
+	        pts.push(pt15);
+	        pts.push(pt16);
+		    var ply = new BMap.Polygon(pts);
+		    
+		    var pt =new BMap.Point(lng, lat);
+		    
+		    var result = BMapLib.GeoUtils.isPointInPolygon(pt, ply);
+		    return result;
+	    }
+		var pro_html = '<div class="food-box" gid="[id]" type="[type]"><span class="data1" style="float:left">[name]</span><div class="data3" ><span class="plus" ><i class="fa fa-plus" style="font-size: 14px;"></i></span><span class="num" style="float:right">[num]</span><span class="minus" style="float:right"><i class="fa fa-minus" style="font-size: 14px;"></i></span><span class="money" style="color:#AF2B2E;float:right">[money] </span><a style="color:#AF2B2E;float:right"> &yen;</a><div style="clear:both;"></div></div><div style="clear:both;"></div></div><div class="line"></div>'; 
+		// function showMask(){     
+	 //        $("#mask").css("height",$(document).height());     
+	 //        $("#mask").css("width",$(document).width());     
+	 //        $("#mask").show();     
+	 //    }  
+	 //    function hideMask(){     
+	 //        $("#mask").hide();     
+	 //    }  
+	 	var flag2 = true 
+		function xidang(){
+			if (flag2) {
+				flag2 = false
+				var d = {}
+				var flag = false
+				var histroyMsg
+				localStorage.removeItem("{:session('uid')}"+'order');
+				$('.food-box').each(function(){ 
+					histroyMsg = localStorage.getItem("{:session('uid')}"+'order')
+					if(histroyMsg){
+		                histroyMsg = JSON.parse(histroyMsg)
+		            }else{
+		                histroyMsg = Array();
+		            }
+					var gid = $(this).attr('gid')
+					var name = $(this).find(".data1").html()
+					var money = $(this).find(".data3 .money").html()
+					var num = $(this).find(".data3 .num").html()
+					// console.log(num)
+					var timestamp = Date.parse(new Date())/1000;  
+					d['gid'] = gid
+					d['name'] = name
+					d['money'] = money
+					d['num'] = num
+					d['time'] = timestamp
+
+					
+
+					// console.log(d)
+		            histroyMsg.push(d)
+
+		            histroyMsg = JSON.stringify(histroyMsg)
+
+		        	localStorage.setItem("{:session('uid')}"+'order',histroyMsg)
+		        	flag = true
+				})
+				if (flag) {
+		            histroyMsg = JSON.parse(histroyMsg)
+		            var money = $('.price').html()
+		            var number = $('.number').html()
+					var url = "{:url('index/pro/addorder')}"
+					$.post(url,{data:histroyMsg,money:money,number:number},function(data){
+						// console.log(data)
+				    	localStorage.removeItem("{:session('uid')}"+'time')
+						window.location.href = "{:url('index/orderqueren/index')}";
+					})
+				}else{
+					alert('请选择商品')
+					flag2 = true
+				}
+			}
+		}
+
+		$(document).on("click",".bb",function(){
+			$(".bb").css("color",'');
+			$(".bb").css("border-bottom",'hidden');
+			$(this).css("color",'#AF2B2E');
+			$(this).css("border-bottom",'2px solid #AF2B2E');
+			
+		})
+
+		$(function(){
+			// 获取底部foot的高度，并且改变显示购买产品的bottom高度，适应不同屏幕定位高度
+			var height  = $(".foot").height()
+			// console.log(height)
+			$(".food").css("bottom",height)
+
+			var data_length=0
+
+			//点击一个商品append该条商品
+			$(".login-box").click(function(){
+				// var flag = false
+				// var box = ''
+				$(".food").css("display","block")
+				// 获取该条商品的名字，价格和id
+				var name = $(this).find("span").html()
+				var money = $(this).find("a").html()
+				var index = $(this).attr("index")
+				var type = $(this).attr("type")
+				var number = $(this).attr("number")
+				if(number==0){
+						alert("今天卖完了，看看其他吧^0^")
+						return
+					}
+
+				addaptcount(name,money,index,number,type)
+			})
+
+				// 写最上面商品加的点击事件
+				$(".head-box").click(function(){
+					
+					var name = $(this).find(".n").html()
+				    var money = $(".s1").html()
+					var index = $(this).attr("index")
+					var type = $(this).attr("type")
+			        var number = $(this).attr("number")
+					// console.log(number)
+					if(number==0){
+						alert("今天卖完了，看看其他吧^0^")
+						return
+					}
+					// console.log(name,money,index)
+					$(".food").css("display","block")
+
+					addaptcount(name,money,index,number,type)
+				})
+
+					
+				
+				function addaptcount(name,money,index,number,type){
+
+					var flag = false
+					var box = ''
+					// 遍历所有商品，判断该条商品是不是已经append上去
+					$('.food-box').each(function(){
+						var gid = $(this).attr('gid')
+						// 判断该条商品的gid是不是等于商品的index
+						if (gid==index) {
+							flag = true
+							box = $(this)
+							// console.log(box)
+						}
+					})
+					// 如果商品已经存在，获取该产品的数量，并且num加一
+					if (flag) {
+						var num = box.find('.num').html()
+						
+						if(type!=0){
+
+							if(type == num){
+								alert("这个每天就这么点，给别人留点儿吧")
+								return
+							}
+						}
+						num = parseInt(num)
+						num++
+						
+						box.find(".num").html(num)
+						var money = box.find('.money').html()
+						money = parseFloat(money)
+						// console.log(money)
+						// console.log(num)
+
+					// 如果商品不存在，就append一条新的商品
+					}else{
+						// console.log(name,price,index)
+						var item = pro_html.replace('[name]',name)
+						item = item.replace('[money]',money)
+						item = item.replace('[num]',1)
+						item = item.replace('[id]',index)
+						item = item.replace('[type]',type)
+						$(".food").append(item)
+						
+					}
+					
+					// 写加的计算总价格和总数量
+					var total_money=$(".foot-top .price").html();
+					total_money = parseFloat(total_money)
+					// console.log(total_money)
+					money = parseFloat(money)
+					total_money = total_money+money
+					total_money = total_money.toFixed(2)
+					$(".foot .price").html(total_money)
+					var total_num = $(".foot-bottom .number").html()
+					total_num = parseFloat(total_num)
+					total_num++
+					$(".foot-bottom .number").html(total_num)
+				
+					// console.log(total_money)
+					}
+
+
+				// 写加的点击事件
+				$(document).on("click",".food-box .plus",function(){
+
+					var num = $(this).parent().parent().find('.num').html()
+				    num = parseInt(num)
+
+					var type = $(this).parent().parent().attr("type")
+					console.log(type)
+					var number = $(this).attr("number")
+					if(type!=0){
+					
+							
+							// console.log(type)
+							if(type == num){
+								alert("这个每天就这么点，给别人留点儿吧")
+								return
+							}
+						}
+					
+					num=num+1
+
+					$(this).parent().parent().find('.num').html(num)
+					// console.log(num)
+					
+					// 写加的计算总价格和总数量
+					var money = $(this).parent().parent().find('.money').html()
+					money = parseFloat(money)
+					// console.log(money)
+					var total_money=$(".foot-top .price").html();
+					total_money = parseFloat(total_money)
+					money = parseFloat(money)
+					total_money = total_money+money
+					total_money = total_money.toFixed(2)
+					$(".foot .price").html(total_money)
+					var total_num = $(".foot-bottom .number").html()
+					total_num = parseFloat(total_num)
+					total_num++
+					$(".foot-bottom .number").html(total_num)
+					
+					
+				})
+				// 写减的点击事件
+				$(document).on("click",".food-box .minus",function(){
+					var num = $(this).parent().parent().find('.num').html()
+				    num = parseInt(num)
+					num=num-1
+					$(this).parent().parent().find('.num').html(num)
+					if(num==0){
+						$(this).parent().parent().next().remove()
+						$(this).parent().parent().remove()
+					}
+					// 写减的计算总价格和总数量
+					var money = $(this).parent().parent().find('.money').html()
+					money = parseFloat(money)
+					// console.log(money)
+					var total_money=$(".foot-top .price").html();
+					total_money = parseFloat(total_money)
+					// console.log(total_money)
+					money = parseFloat(money)
+					total_money = total_money-money
+					total_money = total_money.toFixed(2)
+					$(".foot .price").html(total_money)
+					var total_num = $(".foot-bottom .number").html()
+					total_num = parseFloat(total_num)
+					total_num--
+					$(".foot-bottom .number").html(total_num)
+					
+					
+				})
+	
+
+				// 渲染左边的便签栏
+				var index = 0;
+				{foreach $goods as $item}
+				if(index==0){
+
+					$(".left").append("<div><a href='#{$item.id}'><button class='bb'  data-index='' style='color:#AF2B2E;border-bottom:2px solid #AF2B2E;'>{$item.name}</button></a></div>")
+					index++;
+				}else{
+					$(".left").append("<div><a href='#{$item.id}'><button class='bb'  data-index=''>{$item.name}</button></a></div>")
+				} 
+				{/foreach}
+
+					
+				$(document).scroll(function(){
+					// 遍历左边标签栏，给每一个data-index递增的属性
+					var length = $(".left div").length;
+				    i= 0 
+					$(".bb").each(function(){
+						$(this).attr("data-index",i)
+						i++
+					})
+					// 滚动监听，标签到顶部的距离，然后给对应的左边标签样式
+					for(var i = 0; i < length; i++) {
+						var t = $("button[data-index="+i+"]").parent().attr('href')
+						if($(''+t+'').offset().top - $(window).scrollTop()<60){
+							$(".bb").css("color",'');
+							$(".bb").css("border-bottom",'hidden');
+							$("button[data-index="+i+"]").css("color",'#AF2B2E');
+							$("button[data-index="+i+"]").css("border-bottom",'2px solid #AF2B2E');	
+						}
+					}
+					// 监听是否到达底部
+					if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
+						var k = length-1
+						$(".bb").css("color",'');
+						$(".bb").css("border-bottom",'hidden');
+						$("button[data-index="+k+"]").css("color",'#AF2B2E');
+						$("button[data-index="+k+"]").css("border-bottom",'2px solid #AF2B2E');	
+					}
+				})
+			
+		})
+				
+	</script>
+</body>
+</html>
