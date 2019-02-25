@@ -87,12 +87,12 @@ function getCode(){
 function getCode1(){
     $redirect_uri = 'http://xwc.enj1.com/index.php/index/indexlogin/send_login1';
     $redirect_uri = urlencode($redirect_uri);
-    $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1f2862ac2e460e46&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect';
+    $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=xxxxxx&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect';
     header("location:".$url);
     exit;
 }
 function getAccessToken($code){
-    $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx1f2862ac2e460e46&secret=02a08ee21768e5f448d052ad0b5525db&code='.$code.'&grant_type=authorization_code';
+    $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=xxxxxx&secret=xxxxxx&code='.$code.'&grant_type=authorization_code';
     $data = file_get_contents($url);
     $data = json_decode($data,true);
     return $data; 
